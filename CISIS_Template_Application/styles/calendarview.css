@@ -1,0 +1,230 @@
+
+
+
+
+<HTML>
+    <head><link rel="stylesheet" type="text/css" href="http://bjmac.hccis.info:8080/styles/styles.css"></head>
+<body>
+<table border="0" width="100%" cellspacing="5">
+<tr>
+  <td colspan="2">
+
+
+
+
+
+
+
+
+<html>
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>CIS Fitness Center</title>
+        <base href="http://bjmac.hccis.info:8080/CourtBooking/base_classic.jsp">
+    </head>
+    <body>
+                <div>
+                    <h1>
+                        CIS Fitness Center<br/>
+                        Squash Court Booking System
+                    </h1>
+        </div>        
+
+    </body>
+
+</html>
+</td>
+</tr>
+<tr>
+  <td width="140" valign="top">
+    
+
+
+
+
+
+
+<html>
+<form name="futureForm" method="post" action="/CourtBooking/mainMenu.do">
+
+<table>
+<tr style="text-align: center;">
+    <td>
+    Menu
+  </td>
+</tr>
+<tr>
+  <td width="120" valign="top">
+    <font size="-1"> <input type="submit" name="action" value="Court Bookings" /></font>
+  </td>
+</tr>
+
+
+
+<tr>
+  <td width="120" valign="top">
+      <font size="-1"> <input type="submit" name="action" value="Members"/></font>
+  </td>
+</tr>
+
+
+
+<tr>
+  <td width="120" valign="top">
+    <font size="-1"> <input type="submit" name="action" value="Logout"/></font>
+  </td>
+</tr>
+</table>
+</form>
+</html>
+  </td>
+  <td valign="top"  align="left">
+    
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+    function formFocus() {
+        document.forms[0].elements["bookingDate"].focus();
+    }
+
+    window.onload = formFocus;
+//]]>
+</script>
+
+
+
+<form name="mainForm" method="post" action="/CourtBooking/main.do">
+
+    <head>
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="./styles/calendarview.css">
+        <style>
+            body {
+                font-family: Trebuchet MS;
+            }
+            div.calendar {
+                max-width: 240px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            div.calendar table {
+                width: 100%;
+            }
+            div.dateField {
+                width: 140px;
+                padding: 6px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                color: #555;
+                background-color: white;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+            div#popupDateField:hover {
+                background-color: #cde;
+                cursor: pointer;
+            }
+        </style>
+        <script src="./javascript/prototype.js"></script>
+        <script src="./javascript/calendarview.js"></script>
+        <script>
+    function setupCalendars() {
+        // Embedded Calendar
+        Calendar.setup(
+                {
+                    dateField: 'bookingDate',
+                    parentElement: 'embeddedCalendar'
+                }
+        )
+
+        // Popup Calendar
+        Calendar.setup(
+                {
+                    dateField: 'popupDateField',
+                    triggerElement: 'popupDateField'
+                }
+        )
+    }
+
+    Event.observe(window, 'load', function() {
+        setupCalendars()
+    })
+        </script>
+    </head>
+    <body>
+        <div>
+
+            
+            
+            <h3>
+                Pick date to book a court
+            </h3>
+
+            
+                
+            <div style="color:red">
+                
+            </div>
+
+            
+
+            <div id="embeddedExample">
+                <div id="embeddedCalendar" style="margin-left: auto; margin-right: auto">
+                </div>
+                <br />
+                <div id="bookingDateDiv" >
+                    <label class="alignCenter" for="bookingDate">
+                        Date to book</label>
+                    <input align="center" type="text" name="bookingDate" id="bookingDate" size="20" value="" />
+                    <input type="submit" value="Book"/>
+                </div>
+                <br />
+        </div>
+    </body>
+</form>
+
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    
+
+
+
+
+
+
+
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>CIS Fitness Center</title>
+        <base href="http://bjmac.hccis.info:8080/CourtBooking/base_classic.jsp">
+    </head>
+    <body>
+        <div >
+            <h1>
+                CISIS lbd:20140611<br/>
+            </h1>
+        </div>        
+
+    </body>
+
+</html>
+
+
+  </td>
+</tr>
+</table>
+</body>
+</html>
