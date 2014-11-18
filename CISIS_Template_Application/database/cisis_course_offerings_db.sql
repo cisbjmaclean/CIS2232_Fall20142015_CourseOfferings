@@ -16,8 +16,8 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-CREATE DATABASE IF NOT EXISTS cisis_template_db;
-use cisis_template_db;
+CREATE DATABASE IF NOT EXISTS cisis_course_offerings_db;
+use cisis_course_offerings_db;
 
 --
 -- Table structure for table `code_type`
@@ -56,6 +56,7 @@ INSERT INTO `code_type` (`code_type`, `english_description`, `french_description
 (15, 'Positions', 'Positions', '2014-06-15 00:00:00', 'BJMACLEAN', '2014-06-15 00:00:00', 'BJMACLEAN'),
 (16, 'Notification types', 'Notification types', '2014-06-06 00:00:00', 'BJMACLEAN', '2014-06-06 00:00:00', 'BJMACLEAN'),
 (17, 'User types', 'User types', '2014-08-16 21:52:57', 'admin', '2014-08-16 21:52:57', 'admin');
+(18, 'Location', 'Location', '2014-11-02 21:17:00', 'kylea', '2014-11-02 21:18:00', 'kylea');
 
 -- --------------------------------------------------------
 
@@ -144,34 +145,12 @@ INSERT INTO `code_value` (`code_type_id`, `code_value_sequence`, `english_descri
 (16, 2, 'Important Message', 'Important Message', 'IM', 'IM', '2014-06-07 00:00:00', 'BJMACLEAN', '2014-06-07 00:00:00', 'BJMACLEAN'),
 (17, 1, 'Administrator', 'Admin', 'Administrator', 'Admin', '2014-08-16 21:55:23', 'Admin', '2014-08-16 21:55:23', 'Admin'),
 (17, 2, 'Member', 'Member', 'Member', 'Member', '2014-08-16 21:56:07', 'Admin', '2014-08-16 21:56:07', 'Admin');
+(18, 1, 'Charlottetown Centre', 'PWC', 'Charlottetown Centre', 'PWC', '2014-11-02 21:20:00', 'Kylea', '2014-11-02 21:20:00', 'Kylea'),
+(18, 2, 'Waterfront Campus', 'WC', 'Waterfront Campus', 'WC', '2014-11-02 21:20:00', 'Kylea', '2014-11-02 21:20:00', 'Kylea'),
+(18, 3, 'Off-Site', 'OS', '', '', '2014-11-02 21:22:00', 'Kylea', '2014-11-02 21:22:00', 'Kylea');
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `event`
---
-
-CREATE TABLE IF NOT EXISTS `event` (
-  `event_num` int(10) NOT NULL AUTO_INCREMENT,
-  `member_id` int(6) NOT NULL,
-  `pd_code` int(3) NOT NULL,
-  `date` varchar(10) NOT NULL,
-  `description` varchar(144) NOT NULL,
-  `hour` double(10,2) NOT NULL,
-  PRIMARY KEY (`event_num`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `event`
---
-
-INSERT INTO `event` (`event_num`, `member_id`, `pd_code`, `date`, `description`, `hour`) VALUES
-(1, 1, 1, '10/10/1987', 'test', 0.00),
-(2, 1, 5, '2014-07-15', '', 2.00),
-(3, 1, 3, '2014-07-09', 'This is an audited course.', 0.00),
-(4, 1, 2, '2014-09-09', 'test', 0.00);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `member`
@@ -238,155 +217,45 @@ INSERT INTO `member_access` (`member_id`, `user_id`, `password`, `access_string`
 --
 -- Table structure for table `member_bio`
 --
+--
+-- Table structure for table `member_bio`
+--
 
 CREATE TABLE IF NOT EXISTS `member_bio` (
   `member_id` int(6) DEFAULT NULL,
   `first_name` varchar(20) DEFAULT NULL,
   `middle_name` varchar(20) DEFAULT NULL,
   `last_name` varchar(20) DEFAULT NULL,
-  `salutation_code` int(3) DEFAULT NULL COMMENT 'Code type 3',
-  `previous_surnames` varchar(100) DEFAULT NULL COMMENT 'Any priour surnames',
-  `email_to_members` tinyint(1) DEFAULT NULL COMMENT 'Permission to distribute email to members',
-  `email_to_business` tinyint(1) DEFAULT NULL COMMENT 'Permission to distribute email to business',
-  `email_to_government` tinyint(1) DEFAULT NULL COMMENT 'Permission to distribute email to government',
-  `email_to_peida_executive` tinyint(1) DEFAULT NULL COMMENT 'Permission to distribute email to PEIDA Executive',
   `address_1` varchar(30) DEFAULT NULL,
   `address_2` varchar(30) DEFAULT NULL,
   `municipality` varchar(30) DEFAULT NULL COMMENT 'Community/town/city',
   `province_code` int(3) DEFAULT NULL COMMENT 'Code type 5',
   `postal_code` varchar(6) DEFAULT NULL COMMENT 'Postal code (no dash)',
   `home_phone` varchar(10) DEFAULT NULL,
+  `cell_phone` varchar(10) DEFAULT NULL,
   `work_phone` varchar(10) DEFAULT NULL,
   `work_phone_extension` varchar(5) DEFAULT NULL,
   `fax_number` varchar(10) DEFAULT NULL,
   `email_address` varchar(50) DEFAULT NULL,
-  `website_address` varchar(50) DEFAULT NULL,
   `date_of_birth` varchar(10) DEFAULT NULL COMMENT 'yyyy-mm-dd format',
-  `gender_code` int(3) DEFAULT NULL COMMENT 'code type 6',
-  `bilingual_e_f_ind` tinyint(1) DEFAULT NULL COMMENT 'boolean for English/French',
-  `bilingual_other` varchar(50) DEFAULT NULL COMMENT 'other bilingual combination',
-  `canadian_citizen_ind` tinyint(1) DEFAULT NULL,
-  `landed_immigrant_ind` tinyint(1) DEFAULT NULL,
-  `country_of_origin_code` int(3) DEFAULT NULL COMMENT 'Country of origin',
-  `immigrant_authorized_ind` tinyint(1) DEFAULT NULL,
-  `immigrant_authorized_expiry_date` varchar(10) DEFAULT NULL
+  `gender_code` int(3) DEFAULT NULL COMMENT 'code type 6'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Member biographical information';
 
 --
--- Dumping data for table `member_bio`
+-- Table structure for table `member_squash`
 --
 
-INSERT INTO `member_bio` (`member_id`, `first_name`, `middle_name`, `last_name`, `salutation_code`, `previous_surnames`, `email_to_members`, `email_to_business`, `email_to_government`, `email_to_peida_executive`, `address_1`, `address_2`, `municipality`, `province_code`, `postal_code`, `home_phone`, `work_phone`, `work_phone_extension`, `fax_number`, `email_address`, `website_address`, `date_of_birth`, `gender_code`, `bilingual_e_f_ind`, `bilingual_other`, `canadian_citizen_ind`, `landed_immigrant_ind`, `country_of_origin_code`, `immigrant_authorized_ind`, `immigrant_authorized_expiry_date`) VALUES
-(1, 'Bruce', 'John', 'MacLean', 2, 'None0945', 1, 0, 1, 0, '69 Bonavista Ave.', '', 'Stratford', 5, 'c1b0e5', '9023670579', '9025669663', '663', '9022225555', 'bjmaclean@hollandcollege.com', 'bjmac.hccis.info:8080/RegistrationBoard', '1999-10-10', 1, 0, 'N/a', 0, 0, 1, 0, ''),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'a', 'a', 'bbbb', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'bj.maclean@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'a', 'a', 'cccc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'bj.maclean@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'a', 'a', 'dddd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'bj.maclean@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'FTest', 'M', 'L', 0, '', 0, 0, 0, 0, '', '', '', 1, '', '', '', '', '', 'bj.maclean@gmail.com', '', '', 1, 0, '', 0, 0, 1, 0, ''),
-(8, 'Alan', 'J', 'Davidson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ajdavidson@ihis.org', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 'Alan', 'J', 'Davidson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ajdavidson@ihis.org', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+CREATE TABLE IF NOT EXISTS `member_squash` (
+  `member_id` int(6) DEFAULT NULL,
+  `division_code` int(3) DEFAULT NULL,
+  `level_code` int(3) DEFAULT NULL,
+  `club_code` int(3) DEFAULT NULL,
+  `registration_date` varchar(10) DEFAULT NULL,
+  `permission_add_to_player_list` tinyint(1) DEFAULT NULL COMMENT 'Permission to add to website',
+  `permission_use_photo` tinyint(1) DEFAULT NULL COMMENT 'Permission to use photo',
+  `payment_status` int(3) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='squash specific member information';
 
--- --------------------------------------------------------
-
---
--- Table structure for table `member_education`
---
-
-CREATE TABLE IF NOT EXISTS `member_education` (
-  `member_id` int(6) NOT NULL COMMENT 'Member id pk',
-  `me_sequence` int(6) NOT NULL COMMENT 'Sequence number unique in this table.',
-  `program_code` int(3) NOT NULL COMMENT 'Code type 8',
-  `designation` varchar(25) NOT NULL COMMENT 'type of cert.',
-  `me_year` int(4) NOT NULL COMMENT 'Year certification was received',
-  `me_province_code` int(3) NOT NULL COMMENT 'Province education received',
-  `me_institution` varchar(100) NOT NULL COMMENT 'Name of granting institution',
-  `me_core_ind` tinyint(1) NOT NULL COMMENT 'Is this a core eduction',
-  `me_active_ind` bigint(20) unsigned NOT NULL COMMENT 'Active code type',
-  `created_date_time` datetime NOT NULL,
-  `created_user_id` varchar(20) NOT NULL,
-  `updated_date_time` datetime NOT NULL,
-  `updated_user_id` varchar(20) NOT NULL,
-  PRIMARY KEY (`member_id`,`me_sequence`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Member education data';
-
---
--- Dumping data for table `member_education`
---
-
-INSERT INTO `member_education` (`member_id`, `me_sequence`, `program_code`, `designation`, `me_year`, `me_province_code`, `me_institution`, `me_core_ind`, `me_active_ind`, `created_date_time`, `created_user_id`, `updated_date_time`, `updated_user_id`) VALUES
-(1, 1, 1, '', 2010, 1, 'UPEI', 1, 0, '2014-06-15 00:00:00', 'BJMACLEAN', '2014-08-17 00:06:11', 'BJMACLEAN'),
-(1, 2, 2, '', 2015, 4, 'mcm', 1, 0, '2014-06-15 22:20:10', '', '2014-06-21 19:01:31', ''),
-(1, 3, 2, 'Science', 1995, 5, 'McMaster', 0, 1, '2014-06-15 22:54:41', '', '2014-06-15 22:54:41', ''),
-(9, 1, 3, 'BSc', 1998, 4, 'UPEI', 1, 1, '2014-08-25 09:46:02', 'AlanAdmin', '2014-08-25 09:46:02', 'AlanAdmin'),
-(9, 2, 7, '', 2000, 4, 'Queen Elizabeth Hospital', 1, 1, '2014-08-25 09:46:30', 'AlanAdmin', '2014-08-25 09:46:30', 'AlanAdmin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `member_employer`
---
-
-CREATE TABLE IF NOT EXISTS `member_employer` (
-  `member_id` int(6) NOT NULL,
-  `me_sequence` int(11) NOT NULL COMMENT 'sequence of the employer for a given employee',
-  `me_active_ind` tinyint(1) NOT NULL COMMENT 'deleted or not.',
-  `member_employer_primary_ind` tinyint(1) DEFAULT NULL COMMENT 'Primary indicator',
-  `employer_name` varchar(40) NOT NULL COMMENT 'Employer name',
-  `address_1` varchar(30) NOT NULL,
-  `address_2` varchar(30) NOT NULL,
-  `municipality` varchar(30) NOT NULL COMMENT 'Community/town/city',
-  `province_code` int(3) NOT NULL COMMENT 'Code type 5',
-  `postal_code` varchar(6) NOT NULL COMMENT 'Postal code (no dash)',
-  `position_code` int(3) DEFAULT NULL COMMENT 'Code type 15',
-  `practice_area_code` int(3) DEFAULT NULL COMMENT 'Code type 11',
-  `employment_status_code` int(3) DEFAULT NULL COMMENT 'Code type 12',
-  `employment_category_code` int(3) DEFAULT NULL COMMENT 'Code type 13',
-  `funding_source_code` int(3) DEFAULT NULL COMMENT 'Code type 14',
-  `created_date_time` datetime NOT NULL,
-  `created_user_id` varchar(20) NOT NULL,
-  `updated_date_time` datetime NOT NULL,
-  `updated_user_id` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `member_employer`
---
-
-INSERT INTO `member_employer` (`member_id`, `me_sequence`, `me_active_ind`, `member_employer_primary_ind`, `employer_name`, `address_1`, `address_2`, `municipality`, `province_code`, `postal_code`, `position_code`, `practice_area_code`, `employment_status_code`, `employment_category_code`, `funding_source_code`, `created_date_time`, `created_user_id`, `updated_date_time`, `updated_user_id`) VALUES
-(1, 1, 0, 1, '1', '2', '3', '4', 4, '5', 1, 1, 1, 1, 1, '2014-08-01 22:05:06', '', '2014-08-17 00:07:34', ''),
-(0, 1, 1, 0, 'Queen Elizabeth Hospital', 'PO Box 6600', '', 'Charlottetown', 4, 'C1A8T5', 1, 1, 1, 1, 1, '2014-08-25 09:48:10', 'AlanAdmin', '2014-08-25 09:48:10', 'AlanAdmin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `member_employment`
---
-
-CREATE TABLE IF NOT EXISTS `member_employment` (
-  `member_id` int(6) NOT NULL,
-  `employment_status_code` int(3) DEFAULT NULL COMMENT 'Code type 9',
-  `currency_code` int(3) DEFAULT NULL COMMENT 'Code type 10',
-  `practice_via_telephone_ind` tinyint(1) NOT NULL COMMENT 'employment - do they practice via telephone',
-  `practice_via_internet_ind` tinyint(1) NOT NULL COMMENT 'employment - do they practice via internet',
-  `practice_in_person_ind` tinyint(1) NOT NULL COMMENT 'employment - do they practice in person',
-  `practice_jurisdictions` varchar(200) DEFAULT NULL COMMENT 'Jurisdictions where member practices'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `member_employment`
---
-
-INSERT INTO `member_employment` (`member_id`, `employment_status_code`, `currency_code`, `practice_via_telephone_ind`, `practice_via_internet_ind`, `practice_in_person_ind`, `practice_jurisdictions`) VALUES
-(1, 1, 1, 0, 0, 1, 'TEST'),
-(3, NULL, NULL, 0, 0, 0, NULL),
-(4, NULL, NULL, 0, 0, 0, NULL),
-(5, NULL, NULL, 0, 0, 0, NULL),
-(6, NULL, NULL, 0, 0, 0, NULL),
-(7, NULL, NULL, 0, 0, 0, NULL),
-(8, NULL, NULL, 0, 0, 0, NULL),
-(9, NULL, NULL, 0, 0, 0, NULL);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `notification`
@@ -427,41 +296,21 @@ INSERT INTO `notification` (`notification_id`, `notification_type_code`, `notifi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pd_type`
+-- Table structure for table `course`
 --
 
-CREATE TABLE IF NOT EXISTS `pd_type` (
-  `pd_code` int(10) NOT NULL,
-  `pd_title_eng` varchar(300) NOT NULL,
-  `pd_title_fr` varchar(300) NOT NULL,
-  `pd_hour` double(3,1) NOT NULL,
-  `pd_comment_eng` varchar(144) NOT NULL,
-  `pd_comment_fr` varchar(144) NOT NULL,
-  `hour_req` tinyint(1) NOT NULL
+CREATE TABLE IF NOT EXISTS `course` (
+  `course_ID` varchar(255) NOT NULL,
+  `couse_sDate` date NOT NULL,
+  `couse_eDate` date NOT NULL,
+  `course_preReqs` varchar(255) NOT NULL,
+  `course_capacity` int(11) NOT NULL,
+  `course_coReqs` varchar(255) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `course_days` varchar(255) NOT NULL,
+  `course_times` time NOT NULL,
+  PRIMARY KEY (`course_ID`),
+  UNIQUE KEY `instructor_id` (`member_id`),
+  UNIQUE KEY `location_id` (`location_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pd_type`
---
-
-INSERT INTO `pd_type` (`pd_code`, `pd_title_eng`, `pd_title_fr`, `pd_hour`, `pd_comment_eng`, `pd_comment_fr`, `hour_req`) VALUES
-(1, 'Graduate Course', 'Graduate Course', 30.0, 'On Successful Completion', 'On Successful Completion', 0),
-(2, 'Undergrad Course', 'Undergrad Course', 10.0, 'On Successful Completion', 'On Successful Completion', 0),
-(3, 'Auditing Undergrad Course', 'Auditing Undergrad Course', 5.0, 'On Completion', 'On Completion', 0),
-(4, 'Advanced Certification', 'Advanced Certification', 0.0, 'Credit hours evaluated on individual basis', 'Credit hours evaluated on individual basis', 0),
-(5, 'Short Courses/ Workshops/ Meetings/ Seminars/ Conference/ Symposia/ Grand rounds/ Web-based or teleconference workshops or seminars that are interactive or include an assessment.', 'Short Courses/ Workshops/ Meetings/ Seminars/ Conference/ Symposia/ Grand rounds/ Web-based or teleconference workshops or seminars that are interactive or include an assessment.', 0.5, 'Per Hour of Professional Subject Matter * does not include lunch or coffee breaks.', 'Per Hour of Professional Subject Matter * does not include lunch or coffee breaks.', 1),
-(6, 'Non-Interactice Webinars/ Teleconference/ Telemedicine/ Videos', 'Non-Interactice Webinars/ Teleconference/ Telemedicine/ Videos', 0.5, 'Per Hour of Professional Subject Matter * Up to a maximum of 5 c hrs/yr.', 'Per Hour of Professional Subject Matter * Up to a maximum of 5 c hrs/yr.', 1),
-(7, 'Journal Club Preparation and presentation to a group of professionals.', 'Journal Club Preparation and presentation to a group of professionals.', 1.0, 'Per Hour of Professional Subject Matter.', 'Per Hour of Professional Subject Matter.', 1),
-(8, 'Journal Club Participation', 'Journal Club Participation', 0.5, 'Per Hour of Professional Subject Matter', 'Per Hour of Professional Subject Matter', 1),
-(9, 'Individual Study Program that is pre-approved by the Board', 'Individual Study Program that is pre-approved by the Board', 1.0, 'Per Hour of Professional Subject Matter.', 'Per Hour of Professional Subject Matter.', 1),
-(10, 'Presentations To Professionals', 'Presentations To Professionals', 2.0, 'Per hr of Professional Subject Matter. Max 6 c hrs/yr.', 'Per hr of Professional Subject Matter. Max 6 c hrs/yr.', 1),
-(11, 'Presentations - Discussion leader at professional seminars/workshops', 'Presentations - Discussion leader at professional seminars/workshops', 0.5, 'Per Presentation', 'Per Presentation', 0),
-(12, 'Presentations- Poster Presentation', 'Presentations- Poster Presentation', 2.0, 'Per Poster.', 'Per Poster.', 0),
-(13, 'Writing for Publication- Article for professional press', 'Writing for Publication- Article for professional press', 2.0, 'Per Article', 'Per Article', 0),
-(14, 'Writing for Publication- Peer reviewed article', 'Writing for Publication- Peer reviewed article', 3.0, 'Per Article.', 'Per Article.', 0),
-(15, 'Writing for Publication- Book review for professional press', 'Writing for Publication- Book review for professional press', 2.0, 'Per Book.', 'Per Book.', 0),
-(16, 'Media Relations- Radio/TV/Newspaper interview', 'Media Relations- Radio/TV/Newspaper interview', 0.5, 'Per Interview', 'Per Interview', 0),
-(17, 'Media Relations- Newspaper articles on professional topics', 'Media Relations- Newspaper articles on professional topics', 0.5, 'Per Article.', 'Per Article.', 0),
-(18, 'Professional, Trade, and Educational Exhibits', 'Professional, Trade, and Educational Exhibits', 0.5, 'Per event(Max 2 c hrs/yr)', 'Per event(Max 2 c hrs/yr)', 0),
-(19, 'Participation on Registration Board', 'Participation on Registration Board', 1.0, 'Per year', 'Per year', 0),
-(20, 'Preparing Examinations/ Evaluating Candidates', 'Preparing Examinations/ Evaluating Candidates', 1.0, '1 c hr/yr', '1 c hr/yr', 0);
