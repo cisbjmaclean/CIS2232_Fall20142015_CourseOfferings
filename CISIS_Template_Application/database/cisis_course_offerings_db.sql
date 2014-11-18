@@ -300,16 +300,21 @@ INSERT INTO `notification` (`notification_id`, `notification_type_code`, `notifi
 --
 
 CREATE TABLE IF NOT EXISTS `course` (
-  `course_ID` varchar(255) NOT NULL,
-  `couse_sDate` date NOT NULL,
-  `couse_eDate` date NOT NULL,
-  `course_preReqs` varchar(255) NOT NULL,
+  `course_id` varchar(255) NOT NULL,
+  `couse_start_date` date NOT NULL,
+  `couse_end_date` date NOT NULL,
+  `course_prerequisites` varchar(255) NOT NULL,
   `course_capacity` int(11) NOT NULL,
-  `course_coReqs` varchar(255) NOT NULL,
+  `course_co_Requisites` varchar(255) NOT NULL,
   `member_id` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL,
+  `location_code` int(11) NOT NULL,
+  `room_number` varchar(20) NOT NULL,
   `course_days` varchar(255) NOT NULL,
-  `course_times` time NOT NULL,
+  `course_times`  varchar(255) NOT NULL,
+  `created_date_time` datetime NOT NULL,
+  `created_user_id` varchar(20) DEFAULT NULL,
+  `updated_date_time` datetime NOT NULL,
+  `updated_user_id` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`course_ID`),
   UNIQUE KEY `instructor_id` (`member_id`),
   UNIQUE KEY `location_id` (`location_id`)
