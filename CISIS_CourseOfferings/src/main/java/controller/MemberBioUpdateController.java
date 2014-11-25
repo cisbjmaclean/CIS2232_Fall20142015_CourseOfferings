@@ -28,7 +28,7 @@ public class MemberBioUpdateController {
 //    }
     
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("memberSquash") Member member) {
+    public ModelAndView onSubmit(@ModelAttribute("member") Member member) {
         //pass validation if they enter "TEST" and "TEST"
         //Use the model to update the database and then return back to the member page.
         System.out.println("submitted member for update, name=" + member.getFirstName()+" "+member.getLastName());
@@ -48,7 +48,7 @@ public class MemberBioUpdateController {
         ModelAndView mv;
         mv = new ModelAndView("memberBio");
         mv.addObject("informationMessage","Member information saved");
-        mv.addObject("memberSquash", member);
+        mv.addObject("member", member);
         return mv;
     }
 }

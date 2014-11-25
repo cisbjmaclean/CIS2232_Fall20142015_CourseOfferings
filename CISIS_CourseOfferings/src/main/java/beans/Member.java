@@ -37,7 +37,7 @@ public class Member {
     private String workPhone = "";
     private String workPhoneExtension = "";
     private String emailAddress = "";
-       private String password;
+    private String password;
     private int userType;
     
     public static Path getPath() {

@@ -47,8 +47,13 @@
         <definition name="viewCodes" extends="DefaultTemplate">
 	    <put-attribute name="body"	value="/WEB-INF/views/codes/viewCodes.jsp" />
 	</definition>
+        
         <definition name="viewCalendar" extends="DefaultTemplate">
 	    <put-attribute name="body"	value="/WEB-INF/views/courses/classCalendar.jsp" />
 	</definition>
+        
+        <definition name="report" extends="DefaultTemplate">
+            <put-attribute name="body" value="/WEB-INF/views/reports/report.jsp" />
+        </definition>
 
 </tiles-definitions>

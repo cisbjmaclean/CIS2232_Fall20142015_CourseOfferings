@@ -46,7 +46,7 @@ public class LoginController {
             Member theMember = MemberBO.getMemberByUserid(login.getUsername());
             theMember.setPassword(login.getPassword());
             request.getSession().setAttribute("loggedInMember", theMember);
-            mv.addObject("memberSquash", theMember);
+            mv.addObject("member", theMember);
         } else {
             mv = new ModelAndView("login");
         }

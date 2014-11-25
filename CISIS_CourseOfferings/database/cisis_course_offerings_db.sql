@@ -60,7 +60,8 @@ INSERT INTO `code_type` (`code_type`, `english_description`, `french_description
 (15, 'Positions', 'Positions', '2014-06-15 00:00:00', 'BJMACLEAN', '2014-06-15 00:00:00', 'BJMACLEAN'),
 (16, 'Notification types', 'Notification types', '2014-06-06 00:00:00', 'BJMACLEAN', '2014-06-06 00:00:00', 'BJMACLEAN'),
 (17, 'User types', 'User types', '2014-08-16 21:52:57', 'admin', '2014-08-16 21:52:57', 'admin'),
-(18, 'Location', '', '2014-11-20 00:00:00', 'knjackson', '2014-11-20 00:00:00', 'knjackson');
+(18, 'Location', '', '2014-11-20 00:00:00', 'knjackson', '2014-11-20 00:00:00', 'knjackson'),
+(19, 'Academic Year', 'Academic Year', '2014-11-30 13:44:00', 'Ryan', '2014-11-30 13:45:00', 'Ryan');
 
 -- --------------------------------------------------------
 
@@ -151,7 +152,9 @@ INSERT INTO `code_value` (`code_type_id`, `code_value_sequence`, `english_descri
 (17, 2, 'Member', 'Member', 'Member', 'Member', '2014-08-16 21:56:07', 'Admin', '2014-08-16 21:56:07', 'Admin'),
 (18, 1, 'Charlottetown Centre', 'PWC', 'Charlottetown Centre', 'PWC', '2014-11-20 00:00:00', 'knjackson', '2014-11-20 00:00:00', 'knjackson'),
 (18, 2, 'Waterfront Campus', 'WC', 'Waterfront Campus', 'WC', '2014-11-20 00:00:00', 'knjackson', '2014-11-20 00:00:00', 'knjackson'),
-(18, 3, 'Off-Site', 'OS', '', '', '2014-11-20 00:00:00', 'knjackson', '2014-11-20 00:00:00', 'knjackson');
+(18, 3, 'Off-Site', 'OS', '', '', '2014-11-20 00:00:00', 'knjackson', '2014-11-20 00:00:00', 'knjackson'),
+(19, 1, '2014-2015 Academic Year', '2014-2015', '', '', '2014-11-20 21:48:00', 'Ryan', '2014-11-20 21:49:00', 'Ryan'),
+(19, 2, '2015-2016 Academic Year', '2015-2016', '', '', '2014-11-20 21:48:00', 'Ryan', '2014-11-20 21:49:00', 'Ryan');
 
 -- --------------------------------------------------------
 
@@ -161,6 +164,7 @@ INSERT INTO `code_value` (`code_type_id`, `code_value_sequence`, `english_descri
 
 CREATE TABLE IF NOT EXISTS `course` (
   `course_id` varchar(255) NOT NULL,
+  'academic_year_code' int(11) NOT NULL COMMENT 'Code Type 19',
   `couse_start_date` date NOT NULL,
   `couse_end_date` date NOT NULL,
   `course_prerequisites` varchar(255) NOT NULL,
@@ -208,7 +212,8 @@ INSERT INTO `member` (`member_id`, `user_id`, `organization_type`, `status_type`
 (7, '1052', 1, 1, 2, '2014-08-16 22:52:50', '', '2014-08-16 22:52:50', ''),
 (8, 'AlanNormal', 1, 1, 2, '2014-08-18 15:08:32', '', '2014-08-18 15:08:32', ''),
 (9, 'AlanAdmin', 1, 1, 1, '2014-08-18 15:09:03', '', '2014-08-18 15:09:03', ''),
-(10, 'knjackson', 1, 1, 1, '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', '');
+(10, 'knjackson', 1, 1, 1, '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', ''),
+(11, 'rmaclean', 1, 1, 1, '2014-11-25 16:13:00', '', '2014-11-25 16:13:00', '');
 
 -- --------------------------------------------------------
 
@@ -242,7 +247,8 @@ INSERT INTO `member_access` (`member_id`, `user_id`, `password`, `access_string`
 (7, '1052', '1052', '11111111', '2014-08-16 22:52:50', '', '2014-08-16 23:10:11', '1052'),
 (8, 'AlanNormal', 'rboard', '11111111', '2014-08-18 15:08:32', '', '2014-08-18 15:08:32', ''),
 (9, 'AlanAdmin', 'miller4', '11111111', '2014-08-18 15:09:03', '', '2014-08-25 09:45:14', 'AlanAdmin'),
-(10, 'knjackson', 'knjacksonpw', '111111', '2014-11-20 00:00:00', 'knjackson', '2014-11-20 00:00:00', 'knjackson');
+(10, 'knjackson', 'knjacksonpw', '111111', '2014-11-20 00:00:00', 'knjackson', '2014-11-20 00:00:00', 'knjackson'),
+(11, 'rmaclean', 'rmacleanpw', '111111', '2014-11-25 16:15:00', 'rmaclean', '2014-11-25 16:15:00', 'rmaclean');
 
 -- --------------------------------------------------------
 
