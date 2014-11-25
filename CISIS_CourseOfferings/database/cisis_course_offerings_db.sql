@@ -19,7 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `cisis_course_offerings_db`
 --
-
+CREATE DATABASE IF NOT EXISTS  cisis_course_offerings_db;
+use cisis_course_offerings_db;
 -- --------------------------------------------------------
 
 --
