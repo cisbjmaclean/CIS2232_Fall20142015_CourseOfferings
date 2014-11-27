@@ -36,9 +36,10 @@ public static void loadCodes(HttpServletRequest request){
     request.getSession().setAttribute("positions",getCodeValues("15"));
     request.getSession().setAttribute("notification_types",getCodeValues("16"));
     request.getSession().setAttribute("user_types",getCodeValues("17"));
-    request.getSession().setAttribute("divisions",getCodeValues("18"));
-    request.getSession().setAttribute("levels",getCodeValues("19"));
-    request.getSession().setAttribute("clubs",getCodeValues("20"));
+    request.getSession().setAttribute("location",getCodeValues("18"));
+    request.getSession().setAttribute("academic_year", getCodeValues("19"));
+    //request.getSession().setAttribute("divisions",getCodeValues("18"));
+    //request.getSession().setAttribute("levels",getCodeValues("19"));
     
     
     return;

@@ -55,5 +55,9 @@
         <definition name="report" extends="DefaultTemplate">
             <put-attribute name="body" value="/WEB-INF/views/reports/report.jsp" />
         </definition>
+        
+        <definition name="viewReport" extends="DefaultTemplate">
+            <put-attribute name="body" value="/WEB-INF/views/reports/viewReport.jsp" />
+        </definition>
 
 </tiles-definitions>

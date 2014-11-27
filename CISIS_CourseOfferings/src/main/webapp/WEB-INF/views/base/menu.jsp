@@ -1,48 +1,45 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<form action="menu" method="post">
-    <spring:nestedPath path="menu">
+<spring:nestedPath path="menu">
+    <form action="menu" method="post">
         <table>                     
             <tr>
-                <td>        <input type="submit" name="action" value="My Information">
-                </td>
+                <td><input type="submit" name="action" value="User profile"></td>
             </tr>
             <tr>
-                <td>        <input type="submit" name="action" value="Make Payment">
-                </td>
+                <td><input type="submit" name="action" value="Change Password"></td>
             </tr>
             <tr>
-                <td>        <input type="submit" name="action" value="Change Password">
-                </td>
+                <td><input type="submit" name="action" value="Course Calendar"></td></tr>
             </tr>
             <tr>
-                <td>        <input type="submit" name="action" value="Logout">
-                </td>
+                <td><input type="submit" name="action" value="Add Course" /></td>
+            </tr>
             </tr>
             <tr>
-                <td><fmt:message key="label.admin" />
-                </td>
+                <td><input type="submit" name="action" value="Edit Course" /></td>
             </tr>
             <tr>
-                <td>        <input type="submit" name="action" value="Members">
-                </td>
+                <td><input type="submit" name="action" value="Logout"></td>
             </tr>
             <tr>
-                <td>        <input type="submit" name="action" value="Reports">
-                </td>
+                <td><fmt:message key="label.admin" /></td>
             </tr>
             <tr>
-                <td>        <input type="submit" name="action" value="Notifications">
-                </td>
+                <td><input type="submit" name="action" value="User Directory"></td>
             </tr>
             <tr>
-                <td>        <input type="submit" name="action" value="View Codes">
-                </td>
+                <td><input type="submit" name="action" value="Edit Users" /></td>
             </tr>
             <tr>
-                <td><a target="_blank" href="https://docs.google.com/document/d/1aeqQ1bkWM6_7kdF5Ot3tP18gNJFXOp-nk8P0-kQ9uns/edit#">View Design</a>
-                </td>
+                <td><input type="submit" name="action" value="Reports"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="action" value="Notifications"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="action" value="View Codes"></td>
             </tr>
         </table>
-    </spring:nestedPath>
-</form>
+    </form>
+</spring:nestedPath>
