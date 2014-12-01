@@ -10,15 +10,8 @@
                 <td><input type="submit" name="action" value="Change Password"></td>
             </tr>
             <tr>
-                <td><input type="submit" name="action" value="Course Calendar"></td></tr>
-            </tr>
-            <tr>
-                <td><input type="submit" name="action" value="Add Course" /></td>
-            </tr>
-            </tr>
-            <tr>
-                <td><input type="submit" name="action" value="Edit Course" /></td>
-            </tr>
+                <td><input type="submit" name="action" value="Courses"></td></tr>
+            </tr>     
             <tr>
                 <td><input type="submit" name="action" value="Logout"></td>
             </tr>

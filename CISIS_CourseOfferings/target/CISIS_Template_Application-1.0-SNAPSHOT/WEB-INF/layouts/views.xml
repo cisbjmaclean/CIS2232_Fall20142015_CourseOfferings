@@ -49,7 +49,7 @@
 	</definition>
         
         <definition name="viewCalendar" extends="DefaultTemplate">
-	    <put-attribute name="body"	value="/WEB-INF/views/courses/classCalendar.jsp" />
+	    <put-attribute name="body"	value="/WEB-INF/views/courses/courseCalendar.jsp" />
 	</definition>
         
         <definition name="report" extends="DefaultTemplate">

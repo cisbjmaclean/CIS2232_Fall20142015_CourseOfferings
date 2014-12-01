@@ -53,29 +53,14 @@ public class MenuController {
             cp.setMemberId((String)request.getSession().getAttribute("loggedInUserId"));
             mv.addObject("changePassword",cp);
         /**
-         * Course Calendar
+         * Courses
          */
-        } else if(menu.getAction().equalsIgnoreCase("Course Calendar")) {
+        } else if(menu.getAction().equalsIgnoreCase("Courses")) {
             if (Util.debugOn) {
-                System.out.println("Display course calendar");
+                System.out.println("Display courses");
             }
-            mv = new ModelAndView("main");
-        /**
-         * Add Course
-         */
-        } else if(menu.getAction().equalsIgnoreCase("Add Course")) {
-            if (Util.debugOn) {
-                System.out.println("User wants to add a course");
-            }
-            mv = new ModelAndView("main");
-        /**
-         * Edit Course
-         */
-        } else if(menu.getAction().equalsIgnoreCase("Edit Course")) {
-            if (Util.debugOn) {
-                System.out.println("User wants to edit a course");
-            }
-            mv = new ModelAndView("main");
+            mv = new ModelAndView("courseCalendar");
+
         /**
          * User Directory
          */
