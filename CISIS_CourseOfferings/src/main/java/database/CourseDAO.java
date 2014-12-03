@@ -72,15 +72,10 @@ public class CourseDAO {
         try {
             conn = ConnectionUtils.getConnection();
 
-            sql = "DELETE course "
-                    + "SET status_type=2,"
-                    + "    updated_user_id = ?, "
-                    + "    updated_date_time = sysdate() "
-                    + "WHERE course_id = ?";
+            sql = "DELETE course WHERE course_id = ?";
 
             psMember = conn.prepareStatement(sql);
-            psMember.setString(1, updatedUserId);
-            psMember.setString(2, courseID);
+            psMember.setString(1, courseID);
             psMember.executeUpdate();
 
         } catch (Exception e) {

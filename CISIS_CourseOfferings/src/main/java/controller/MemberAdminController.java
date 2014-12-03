@@ -47,14 +47,14 @@ public class MemberAdminController {
             message = "add a member";
             mv = new ModelAndView("memberBio");
             mv.addObject("informationMessage", message);
-            mv.addObject("memberSquash", new Member());
+            mv.addObject("Member", new Member());
         } else {
             //Get the memberBio
             Member member = MemberBO.getMember(request.getParameter("memberId"));
             mv = new ModelAndView("memberBio");
-            mv.addObject("memberSquash", member);
+            mv.addObject("Member", aMember);
             if (request.getParameter("memberId").equals((String) request.getSession().getAttribute("loggedInUserId"))) {
-                request.getSession().setAttribute("loggedInMember", member);
+                request.getSession().setAttribute("loggedInMember", aMember);
             }
         }
         return mv;

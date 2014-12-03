@@ -11,19 +11,31 @@
         <h2>Welcome to CISIS</h2>
         <table>
             <tr>
-                <td><h2><fmt:message key="welcome.message" /></h2>
-                </td>
-            <tr>
-                <td><strong>Select Year and Semester</strong>
-                    <select name="yearSemester"><option value="1" selected="selected">2014-2015 First Semester</option>
-                        <option value="2">2014-2015 Second Semester</option>
-                        <option value="3">2015-2016 First Semester</option>
-                        <option value="4">2015-2016 Second Semester</option>                   
+                <td><h2>Choose an option</h2>
                 </td>
             </tr>
+                <c:forEach var="course" items="${courses}" varStatus="loopCounter">
+                <tr>
+                    <td><c:out value="${loopCounter.count}" /></td>
+                    <td><c:out value="${course.courseID}" /></td>
+                    <td><c:out value="${course.yearCode}" /></td>
+                    <td><c:out value="${course.courseStart}" /></td>
+                    <td><c:out value="${course.courseEnd}" /></td>
+                    <td><c:out value="${course.preReqs}" /></td>
+                    <td><c:out value="${course.courseCap}" /></td>
+                    <td><c:out value="${course.coReqs}" /></td>
+                    <td><c:out value="${course.memberID}" /></td>
+                    <td><c:out value="${course.location}" /></td>
+                    <td><c:out value="${course.roomNo}" /></td>
+                    <td><c:out value="${course.days}" /></td>
+                    <td><c:out value="${course.times}" /></td>
+                    <a href = "courseCalendar?action = edit&courseID=${course.courseID}">Edit Course</a>
+                    <a href = "courseCalendar?action = delete&courseID=${course.courseID}">Delete Course</a>
+                </tr>
+            </c:forEach>
             <tr>
-                <td><input type="submit" value=<fmt:message key="label.add.course"/></td>
-                <td><input type="submit" value=<fmt:message key="label.add.course"/></td>
+                <td><a href = "courseCalendar?action=add">Add Course</a></td>
+                       
             </tr>
 
 

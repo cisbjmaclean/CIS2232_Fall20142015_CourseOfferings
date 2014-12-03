@@ -6,6 +6,7 @@ import beans.CodeValue;
 import beans.Notification;
 import business.MemberBO;
 import business.NotificationBO;
+import database.CourseDAO;
 import forms.Menu;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("menu")
 public class MenuController {
+    private Object CoursesDAO;
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView onSubmit(@ModelAttribute("menu") Menu menu, HttpServletRequest request) {
@@ -59,7 +61,8 @@ public class MenuController {
             if (Util.debugOn) {
                 System.out.println("Display courses");
             }
-            mv = new ModelAndView("courseCalendar");
+            mv = new ModelAndView("viewCourses");
+            mv.addObject("courses", CourseDAO.getAllCourses());
 
         /**
          * User Directory

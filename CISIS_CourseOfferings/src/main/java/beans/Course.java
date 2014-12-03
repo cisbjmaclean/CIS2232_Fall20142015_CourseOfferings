@@ -20,6 +20,8 @@ public class Course {
     private int instructor= 0;
     private int location= 0;
     private String roomNo= "";
+    private String days= "";
+    private String times= "";
 
     public int getInstructor() {
         return instructor;
@@ -36,8 +38,7 @@ public class Course {
     public void setLocation(int location) {
         this.location = location;
     }
-    private String days= "";
-    private String times= "";
+    
 
     public int getYearCode() {
         return yearCode;

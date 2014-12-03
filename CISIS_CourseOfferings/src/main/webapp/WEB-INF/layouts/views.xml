@@ -48,7 +48,7 @@
 	    <put-attribute name="body"	value="/WEB-INF/views/codes/viewCodes.jsp" />
 	</definition>
         
-        <definition name="viewCalendar" extends="DefaultTemplate">
+        <definition name="viewCourses" extends="DefaultTemplate">
 	    <put-attribute name="body"	value="/WEB-INF/views/courses/courseCalendar.jsp" />
 	</definition>
         
@@ -58,6 +58,9 @@
         
         <definition name="viewReport" extends="DefaultTemplate">
             <put-attribute name="body" value="/WEB-INF/views/reports/viewReport.jsp" />
+        </definition>
+        <definition name="addCourse" extends="DefaultTemplate">
+            <put-attribute name="body" value="/WEB-INF/views/courses/addCourse.jsp" />
         </definition>
 
 </tiles-definitions>

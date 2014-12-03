@@ -14,7 +14,7 @@
         <form action="viewCodes" method="post">
             <body>
 
-                <h2>Please provide your code type to view (1-16)</h2>
+                <h2>Please provide your code type to view (1-19)</h2>
                 <table>
                     <tr>
                         <td>Code type:</td>
