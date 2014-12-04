@@ -24,17 +24,17 @@
                 </tr>
                 <c:forEach var="course" items="${courseList}" varStatus="loopCounter">
                     <tr>
-                        <td><c:out value="${course.course_id}"/></td>
-                        <td><c:out value="${course.course_start_date}"/></td>
-                        <td><c:out value="${course.course_end_date}"/></td>
-                        <td><c:out value="${course.course_prereqs}"/></td>
-                        <td><c:out value="${course.course_co_reqs}"/></td>
-                        <td><c:out value="${course.course_capacity}"/></td>
-                        <td><c:out value="${course.member_id}"/></td>
-                        <td><c:out value="${course.location_code}"/></td>
-                        <td><c:out value="${course.room_number}"/></td>
-                        <td><c:out value="${course.course_days}"/></td>
-                        <td><c:out value="${course.course_times}"/></td>
+                        <td><c:out value="${course.getCourseId()}"/></td>
+                        <td><c:out value="${course.getCourseStartDate()}"/></td>
+                        <td><c:out value="${course.getCourseEndDate()}"/></td>
+                        <td><c:out value="${course.getCoursePrereqs()}"/></td>
+                        <td><c:out value="${course.getCourseCoreqs()}"/></td>
+                        <td><c:out value="${course.getCourseCapacity()}"/></td>
+                        <td><c:out value="${course.getMemberId()}"/></td>
+                        <td><c:out value="${course.getLocationCode()}"/></td>
+                        <td><c:out value="${course.getRoomNumber()}"/></td>
+                        <td><c:out value="${course.getCourseDays()}"/></td>
+                        <td><c:out value="${course.getCourseTimes()}"/></td>
                     </tr>
                 </c:forEach>
             </table>

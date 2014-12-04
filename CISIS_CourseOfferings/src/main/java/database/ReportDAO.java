@@ -12,8 +12,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import util.*;
 
-
-
 /**
  *
  * @author dmaclean31977
@@ -32,23 +30,24 @@ public class ReportDAO {
             sql = "SELECT * FROM `course` WHERE academic_year_code = " + sequenceCodeValue;
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
+            
             while (rs.next()) {
                 Report report = new Report();
-                report.setAcademic_year_code(sequenceCodeValue);
-                report.setCourse_id(rs.getString("course_id"));
-                report.setCourse_start_date(rs.getDate("course_start_date"));
-                report.setCourse_end_date(rs.getDate("course_end_date"));
-                report.setCourse_prereqs(rs.getString("course_prerequisites"));
-                report.setCourse_co_reqs(rs.getString("course_co_Requisites"));
-                report.setCourse_capacity(rs.getInt("course_capacity"));
-                report.setMember_id(rs.getInt("member_id"));
-                report.setLocation_code(rs.getInt("location_code"));
-                report.setRoom_number(rs.getInt("room_number"));
-                report.setCourse_days(rs.getString("course_days"));
-                report.setCourse_times(rs.getString("course_times"));
-                report.setCreated_date_time(rs.getDate("created_date_time"));
-                report.setCreated_user_id(rs.getString("created_user_id"));
-                report.setUpdated_user_id(rs.getString("course_update_user_id"));
+                report.setAcademicYearCode(sequenceCodeValue);
+                report.setCourseId(rs.getString("course_id"));
+                report.setCourseStartDate(rs.getString("course_start_date"));
+                report.setCourseEndDate(rs.getString("course_end_date"));
+                report.setCoursePrereqs(rs.getString("course_prerequisites"));
+                report.setCourseCoreqs(rs.getString("course_co_Requisites"));
+                report.setCourseCapacity(rs.getInt("course_capacity"));
+                report.setMemberId(rs.getInt("member_id"));
+                report.setLocationCode(rs.getInt("location_code"));
+                report.setRoomNumber(rs.getInt("room_number"));
+                report.setCourseDays(rs.getString("course_days"));
+                report.setCourseTimes(rs.getString("course_times"));
+                report.setCreatedDateTime(rs.getString("created_date_time"));
+                report.setCreatedUserId(rs.getString("created_user_id"));
+                report.setUpdatedUserId(rs.getString("updated_user_id"));
                 courses.add(report);
             }
         } catch (Exception e) {
