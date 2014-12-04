@@ -5,12 +5,15 @@
  */
 package beans;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  *
  * @author Chase
  */
 public class Course {
-    private String courseID = "";
+    private String courseID = "";  
     private int yearCode = 0;
     private String courseStart= "";
     private String courseEnd= "";
@@ -22,6 +25,7 @@ public class Course {
     private String roomNo= "";
     private String days= "";
     private String times= "";
+    
 
     public int getInstructor() {
         return instructor;
@@ -50,7 +54,9 @@ public class Course {
     
 
     public String getCourseID() {
+        
         return courseID;
+        
     }
 
     public void setCourseID(String courseID) {

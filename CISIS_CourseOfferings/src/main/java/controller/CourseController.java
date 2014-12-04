@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("courseCalendar")
 public class CourseController {
     
+    
 //    @RequestMapping(method = RequestMethod.GET)
 //    public String loadMember(ModelMap model) {
 //        

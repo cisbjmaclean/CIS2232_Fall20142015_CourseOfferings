@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("addCourse")
+
 public class AddCourseController {
 
 //    @RequestMapping(method = RequestMethod.GET)
@@ -27,10 +28,14 @@ public class AddCourseController {
 //        return "welcome";
 //    }
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("addCourse") Course course) {
-
+    public ModelAndView onSubmit(@ModelAttribute("Course") Course course) {
+              
+        System.out.println("COURSE ID IS : = "+course.getCourseID());
+                
         if (course.getCourseID() != "") {
             try {
+                System.out.println("Made it here (into the try");
+                
                 CourseDAO.addCourse(course);
                 System.out.println("Course added.");
             } catch (Exception ex) {
@@ -43,7 +48,6 @@ public class AddCourseController {
         mv = new ModelAndView("addCourse");
         mv.addObject("courses", course);
         mv.addObject("message", "Course was added");
-        
         return mv;
     }
 }

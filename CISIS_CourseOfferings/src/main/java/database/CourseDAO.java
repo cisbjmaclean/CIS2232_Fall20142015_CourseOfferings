@@ -15,23 +15,20 @@ import util.DbUtils;
 public class CourseDAO {
 
     public static void addCourse(Course course) throws Exception {
-
+        
+        
         System.out.println("inserting a new course");
+        
         PreparedStatement ps = null;
         String sql = null;
         Connection conn = null;
         conn = ConnectionUtils.getConnection();
         try {
-            sql = "SELECT max(course_id) FROM course";
-
-            ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
+           
             sql = "INSERT INTO course "
                     + "  (`course_id`, `academic_year_code`, `course_start_date`, `course_end_date`, "
-                    + "   `course_prerequisites`, `course_capacity`, `course_co_requisites`, `member_id`, `location_code`, `room_number`, `course_days`,`course_times`,`created_date_time`,`created_user_id`,`updated_date_time`,`updated_date_time`) "
-                    + "  VALUES (?, ?, ?, ?, ?,"
-                    + "  sysdate(), ?, sysdate(), ?)";
+                    + "   `course_prerequisites`, `course_capacity`, `course_co_requisites`, `member_id`, `location_code`, `room_number`, `course_days`,`course_times`,`created_date_time`, `updated_date_time`) "
+                    + "  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate(), sysdate())";
 
             ps = conn.prepareStatement(sql);
             ps.setString(1, course.getCourseID());
@@ -46,9 +43,7 @@ public class CourseDAO {
             ps.setString(10, course.getRoomNo());
             ps.setString(11, course.getDays());
             ps.setString(12, course.getTimes());
-
             ps.executeUpdate();
-
         } catch (Exception e) {
             String errorMessage = e.getMessage();
             e.printStackTrace();
@@ -87,26 +82,39 @@ public class CourseDAO {
     }
 
     public static ArrayList<Course> getAllCourses() {
+        System.out.println("Made it in to Get All Courses ");
 
         PreparedStatement ps = null;
         String sql = null;
         Connection conn = null;
 
         ArrayList<Course> courses = new ArrayList();
+
         try {
+            System.out.println("Made it in to the try");
             conn = ConnectionUtils.getConnection();
 
             sql = "SELECT * FROM course";
 
             ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
+
+                System.out.println("RS GET STRING ID = : " + rs.getString("course_id"));
                 Course newCourse = new Course();
+
                 newCourse.setCourseID(rs.getString("course_id"));
+
                 newCourse.setYearCode(rs.getInt("academic_year_code"));
+
+               
                 newCourse.setCourseStart(rs.getString("course_start_date"));
+
                 newCourse.setCourseEnd(rs.getString("course_end_date"));
+
                 newCourse.setPreReqs(rs.getString("course_prerequisites"));
+
                 newCourse.setCourseCap(rs.getInt("course_capacity"));
                 newCourse.setCoReqs(rs.getString("course_co_requisites"));
                 newCourse.setInstructor(rs.getInt("member_id"));
@@ -114,8 +122,11 @@ public class CourseDAO {
                 newCourse.setRoomNo(rs.getString("room_number"));
                 newCourse.setDays(rs.getString("course_days"));
                 newCourse.setTimes(rs.getString("course_times"));
+                
                 courses.add(newCourse);
+
             }
+
         } catch (Exception e) {
             String errorMessage = e.getMessage();
         } finally {

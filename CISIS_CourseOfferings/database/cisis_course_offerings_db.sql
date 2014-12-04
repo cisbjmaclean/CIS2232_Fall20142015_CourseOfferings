@@ -165,8 +165,8 @@ INSERT INTO `code_value` (`code_type_id`, `code_value_sequence`, `english_descri
 CREATE TABLE IF NOT EXISTS `course` (
   `course_id` varchar(255) NOT NULL,
   `academic_year_code` int(11) NOT NULL COMMENT 'Code Type 19',
-  `couse_start_date` date NOT NULL,
-  `couse_end_date` date NOT NULL,
+  `course_start_date` varchar(255) NOT NULL,
+  `course_end_date` varchar(255) NOT NULL,
   `course_prerequisites` varchar(255) NOT NULL,
   `course_capacity` int(11) NOT NULL,
   `course_co_Requisites` varchar(255) NOT NULL,

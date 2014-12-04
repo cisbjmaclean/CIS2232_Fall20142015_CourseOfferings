@@ -24,7 +24,7 @@
                     <td><c:out value="${course.preReqs}" /></td>
                     <td><c:out value="${course.courseCap}" /></td>
                     <td><c:out value="${course.coReqs}" /></td>
-                    <td><c:out value="${course.memberID}" /></td>
+                    <td><c:out value="${course.instructor}" /></td>
                     <td><c:out value="${course.location}" /></td>
                     <td><c:out value="${course.roomNo}" /></td>
                     <td><c:out value="${course.days}" /></td>
