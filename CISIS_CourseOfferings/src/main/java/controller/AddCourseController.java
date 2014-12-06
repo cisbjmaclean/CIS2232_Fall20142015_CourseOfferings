@@ -2,6 +2,7 @@ package controller;
 
 import beans.Course;
 import database.CourseDAO;
+import forms.Login;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import static sun.security.jgss.GSSUtil.login;
 
 /**
  * Controller for the Welcome
@@ -28,15 +30,11 @@ public class AddCourseController {
 //        return "welcome";
 //    }
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("Course") Course course) {
-              
-        System.out.println("COURSE ID IS : = "+course.getCourseID());
-                
+    public ModelAndView onSubmit(@ModelAttribute("Course") Course course, Login login) {
+
         if (course.getCourseID() != "") {
             try {
-                System.out.println("Made it here (into the try");
-                
-                CourseDAO.addCourse(course);
+                CourseDAO.addCourse(course, login);
                 System.out.println("Course added.");
             } catch (Exception ex) {
                 Logger.getLogger(AddCourseController.class.getName()).log(Level.SEVERE, null, ex);

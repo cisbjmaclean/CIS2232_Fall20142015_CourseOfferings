@@ -21,7 +21,9 @@
                         <td>Course ID: <form:input type="text" path = "courseID"/></td>
                     </tr>
                     <tr>
-                        <td>Academic Year Code: <form:input type="text" path = "yearCode"/></td>
+                        <td>
+                        <form:select path="year" items="${sessionScope.academic_year}" itemLabel="description" itemValue="codeValueSequence">                        
+                        </form:select></td>
                     </tr>
                     <tr>
                         <td>Course Start Date: <form:input type="date" path = "courseStart"/></td>
@@ -39,10 +41,11 @@
                         <td>Co-requisites: <form:input type="text" path = "coReqs"/></td>
                     </tr>
                     <tr>
-                        <td>Instructor ID: <form:input type="text" path = "instructor"/></td>
+                        <td>Instructor: <form:input type="text" path = "instructor"/></td>
                     </tr>
                     <tr>
-                        <td>Location Code: <form:input type="text" path = "location"/></td>
+                        <td><form:select path="location" items="${sessionScope.location}" itemLabel="description" itemValue="codeValueSequence">
+                        </form:select></td>
                     </tr>
                     <tr>
                         <td>Room Number: <form:input type="text" path = "roomNo"/></td>

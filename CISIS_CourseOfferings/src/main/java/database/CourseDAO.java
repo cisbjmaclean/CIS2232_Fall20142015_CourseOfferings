@@ -1,6 +1,7 @@
 package database;
 
 import beans.Course;
+import forms.Login;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import util.DbUtils;
  */
 public class CourseDAO {
 
-    public static void addCourse(Course course) throws Exception {
+    public static void addCourse(Course course, Login login) throws Exception {
         
         
         System.out.println("inserting a new course");
@@ -26,23 +27,24 @@ public class CourseDAO {
         try {
            
             sql = "INSERT INTO course "
-                    + "  (`course_id`, `academic_year_code`, `course_start_date`, `course_end_date`, "
-                    + "   `course_prerequisites`, `course_capacity`, `course_co_requisites`, `member_id`, `location_code`, `room_number`, `course_days`,`course_times`,`created_date_time`, `updated_date_time`) "
-                    + "  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate(), sysdate())";
+                    + "  (`course_id`, `academic_year`,`course_start_date`, `course_end_date`, "
+                    + "   `course_prerequisites`, `course_capacity`, `course_co_requisites`, `instructor`,`location`, `room_number`, `course_days`,`course_times`,`created_date_time`,`created_user_id`,`updated_date_time`) "
+                    + "  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate(),?, sysdate())";
 
             ps = conn.prepareStatement(sql);
             ps.setString(1, course.getCourseID());
-            ps.setInt(2, course.getYearCode());
+            ps.setString(2, course.getYear());
             ps.setString(3, course.getCourseStart());
             ps.setString(4, course.getCourseEnd());
             ps.setString(5, course.getPreReqs());
             ps.setInt(6, course.getCourseCap());
             ps.setString(7, course.getCoReqs());
-            ps.setInt(8, course.getInstructor());
-            ps.setInt(9, course.getLocation());
+            ps.setString(8, course.getInstructor());
+            ps.setString(9, course.getLocation());
             ps.setString(10, course.getRoomNo());
             ps.setString(11, course.getDays());
             ps.setString(12, course.getTimes());
+            ps.setString(13, login.getUsername());
             ps.executeUpdate();
         } catch (Exception e) {
             String errorMessage = e.getMessage();
@@ -53,8 +55,43 @@ public class CourseDAO {
         }
         return;
     }
+    public static Course getCourse(String courseID) {
+        PreparedStatement ps = null;
+        String sql = null;
+        Connection conn = null;
+        Course aCourse = new Course();
+        aCourse.setCourseID(courseID);
+        try {
+           
+          sql = "SELECT * FROM coures WHERE course_id = " + courseID;
+            ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                aCourse.setCourseID(courseID);
+                aCourse.setYear(rs.getString("year"));
+                aCourse.setCourseStart(rs.getString("course_start_date"));
+                aCourse.setCourseEnd(rs.getString("course_end_date"));
+                aCourse.setPreReqs(rs.getString("prerequisites"));
+                aCourse.setCourseCap(rs.getInt("course_capacity"));
+                aCourse.setCoReqs(rs.getString("course_co_requisites"));
+                aCourse.setInstructor(rs.getString("instructor"));
+                aCourse.setLocation(rs.getString("location"));
+                aCourse.setRoomNo(rs.getString("room_number"));
+                aCourse.setDays(rs.getString("course_days"));
+                aCourse.setTimes(rs.getString("course_times"));                
 
-    public static void deleteCourse(String courseID, String updatedUserId) {
+            }
+        } catch (Exception e) {
+            String errorMessage = e.getMessage();
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(ps, conn);
+        }
+        return aCourse;
+    }
+
+
+    public static void deleteCourse(String courseID) {
 
         System.out.println("deleting course");
         PreparedStatement psMember = null;
@@ -103,26 +140,18 @@ public class CourseDAO {
 
                 System.out.println("RS GET STRING ID = : " + rs.getString("course_id"));
                 Course newCourse = new Course();
-
                 newCourse.setCourseID(rs.getString("course_id"));
-
-                newCourse.setYearCode(rs.getInt("academic_year_code"));
-
-               
+                newCourse.setYear(rs.getString("academic_year"));               
                 newCourse.setCourseStart(rs.getString("course_start_date"));
-
                 newCourse.setCourseEnd(rs.getString("course_end_date"));
-
                 newCourse.setPreReqs(rs.getString("course_prerequisites"));
-
                 newCourse.setCourseCap(rs.getInt("course_capacity"));
                 newCourse.setCoReqs(rs.getString("course_co_requisites"));
-                newCourse.setInstructor(rs.getInt("member_id"));
-                newCourse.setLocation(rs.getInt("location_code"));
+                newCourse.setInstructor(rs.getString("instructor"));
+                newCourse.setLocation(rs.getString("location"));
                 newCourse.setRoomNo(rs.getString("room_number"));
                 newCourse.setDays(rs.getString("course_days"));
-                newCourse.setTimes(rs.getString("course_times"));
-                
+                newCourse.setTimes(rs.getString("course_times"));                
                 courses.add(newCourse);
 
             }
@@ -150,22 +179,22 @@ public class CourseDAO {
             conn = ConnectionUtils.getConnection();
 
             sql = "UPDATE course "
-                    + "SET course_id=?,academic_year_code=?,course_start_date=?,"
+                    + "SET course_id=?,academic_year=?,course_start_date=?,"
                     + "course_end_date=?,course_prerequisites=?,=?,course_capacity=?,"
-                    + "course_co_requisites=?,member_id=?,location_code=?,room_number=?,course_days=?,"
+                    + "course_co_requisites=?,instructor=?,location=?,room_number=?,course_days=?,"
                     + "course_times=?,date_of_birth=?,gender_code=? "
                     + "WHERE member_id = ?";
 
             psCourse = conn.prepareStatement(sql);
             psCourse.setString(1, course.getCourseID());
-            psCourse.setInt(2, course.getYearCode());
+            psCourse.setString(2, course.getYear());
             psCourse.setString(3, course.getCourseStart());
             psCourse.setString(4, course.getCourseEnd());
             psCourse.setString(5, course.getPreReqs());
             psCourse.setInt(6, course.getCourseCap());
             psCourse.setString(7, course.getCoReqs());
-            psCourse.setInt(8, course.getInstructor());
-            psCourse.setInt(9, course.getLocation());
+            psCourse.setString(8, course.getInstructor());
+            psCourse.setString(9, course.getLocation());
             psCourse.setString(10, course.getRoomNo());
             psCourse.setString(11, course.getDays());
             psCourse.setString(12, course.getTimes());

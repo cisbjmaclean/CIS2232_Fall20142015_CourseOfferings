@@ -164,14 +164,14 @@ INSERT INTO `code_value` (`code_type_id`, `code_value_sequence`, `english_descri
 
 CREATE TABLE IF NOT EXISTS `course` (
   `course_id` varchar(255) NOT NULL,
-  `academic_year_code` int(11) NOT NULL COMMENT 'Code Type 19',
+  `academic_year` varchar(255) NOT NULL COMMENT 'Code Type 19',
   `course_start_date` varchar(255) NOT NULL,
   `course_end_date` varchar(255) NOT NULL,
   `course_prerequisites` varchar(255) NOT NULL,
   `course_capacity` int(11) NOT NULL,
-  `course_co_Requisites` varchar(255) NOT NULL,
-  `member_id` int(11) NOT NULL,
-  `location_code` int(11) NOT NULL,
+  `course_co_requisites` varchar(255) NOT NULL,
+  `instructor` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL COMMENT 'Code Type 18',
   `room_number` varchar(20) NOT NULL,
   `course_days` varchar(255) NOT NULL,
   `course_times` varchar(255) NOT NULL,
@@ -179,9 +179,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `created_user_id` varchar(20) DEFAULT NULL,
   `updated_date_time` datetime NOT NULL,
   `updated_user_id` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`course_id`),
-  UNIQUE KEY `instructor_id` (`member_id`),
-  UNIQUE KEY `code_type_id` (`location_code`)
+  PRIMARY KEY (`course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -275,30 +273,6 @@ CREATE TABLE IF NOT EXISTS `member_bio` (
   `date_of_birth` varchar(10) DEFAULT NULL COMMENT 'yyyy-mm-dd format',
   `gender_code` int(3) DEFAULT NULL COMMENT 'code type 6'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Member biographical information';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `member_squash`
---
-
-CREATE TABLE IF NOT EXISTS `member_squash` (
-  `member_id` int(6) DEFAULT NULL,
-  `division_code` int(3) DEFAULT NULL,
-  `level_code` int(3) DEFAULT NULL,
-  `club_code` int(3) DEFAULT NULL,
-  `registration_date` varchar(10) DEFAULT NULL,
-  `permission_add_to_player_list` tinyint(1) DEFAULT NULL COMMENT 'Permission to add to website',
-  `permission_use_photo` tinyint(1) DEFAULT NULL COMMENT 'Permission to use photo',
-  `payment_status` int(3) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='squash specific member information';
-
---
--- Dumping data for table `member_squash`
---
-
-INSERT INTO `member_squash` (`member_id`, `division_code`, `level_code`, `club_code`, `registration_date`, `permission_add_to_player_list`, `permission_use_photo`, `payment_status`) VALUES
-(10, 0, 0, 0, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 

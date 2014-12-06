@@ -14,44 +14,42 @@ import java.nio.file.Paths;
  */
 public class Course {
     private String courseID = "";  
-    private int yearCode = 0;
+    private String year = "";
     private String courseStart= "";
     private String courseEnd= "";
     private String preReqs= "";
     private int courseCap= 0;
     private String coReqs= "";
-    private int instructor= 0;
-    private int location= 0;
+    private String instructor="";
+    private String location= "";
     private String roomNo= "";
     private String days= "";
     private String times= "";
-    
 
-    public int getInstructor() {
+    public String getInstructor() {
         return instructor;
     }
 
-    public void setInstructor(int instructor) {
+    public void setInstructor(String instructor) {
         this.instructor = instructor;
     }
 
-    public int getLocation() {
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(int location) {
+    public void setLocation(String location) {
         this.location = location;
     }
-    
 
-    public int getYearCode() {
-        return yearCode;
-    }
-
-    public void setYearCode(int yearCode) {
-        this.yearCode = yearCode;
-    }
-    
 
     public String getCourseID() {
         

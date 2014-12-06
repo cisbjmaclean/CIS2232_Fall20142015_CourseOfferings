@@ -14,6 +14,13 @@
                 <td><h2>Choose an option</h2>
                 </td>
             </tr>
+            <tr>
+                <th></th>
+                <th>Course ID:</th>
+                <th>Year Code</th>
+                <th>Course Start Date</th>
+                <th>Course End Date</th>
+            </tr>
                 <c:forEach var="course" items="${courses}" varStatus="loopCounter">
                 <tr>
                     <td><c:out value="${loopCounter.count}" /></td>
@@ -21,20 +28,16 @@
                     <td><c:out value="${course.yearCode}" /></td>
                     <td><c:out value="${course.courseStart}" /></td>
                     <td><c:out value="${course.courseEnd}" /></td>
-                    <td><c:out value="${course.preReqs}" /></td>
-                    <td><c:out value="${course.courseCap}" /></td>
-                    <td><c:out value="${course.coReqs}" /></td>
-                    <td><c:out value="${course.instructor}" /></td>
-                    <td><c:out value="${course.location}" /></td>
-                    <td><c:out value="${course.roomNo}" /></td>
-                    <td><c:out value="${course.days}" /></td>
-                    <td><c:out value="${course.times}" /></td>
-                    <a href = "courseCalendar?action = edit&courseID=${course.courseID}">Edit Course</a>
-                    <a href = "courseCalendar?action = delete&courseID=${course.courseID}">Delete Course</a>
+                    <td><a href = "courseCalendar?action = edit&courseID=${course.courseID}">Edit Course</a></td>
+                    <td><a href = "courseCalendar?action = delete&courseID=${course.courseID}">Delete Course</a></td>
                 </tr>
             </c:forEach>
             <tr>
                 <td><a href = "courseCalendar?action=add">Add Course</a></td>
+                       
+            </tr>
+            <tr>
+                <td>${message}</td>
                        
             </tr>
 

@@ -1,11 +1,7 @@
 package controller;
 
 import beans.Course;
-import beans.Member;
-import business.MemberBO;
 import database.CourseDAO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,16 +30,23 @@ public class CourseController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView onSubmit(@ModelAttribute("course")Course course, HttpServletRequest request) {
         
-
+        Course aCourse = new Course();
         String actionSpecified = request.getParameter("action");
         String message = "";
         ModelAndView mv = null;
         
 
        if (actionSpecified != null && actionSpecified.equalsIgnoreCase("add")) {
-            message = "add a member";
+            message = "add a course";
             mv = new ModelAndView("addCourse");
             mv.addObject("course", new Course());
+        }
+       if (actionSpecified != null && actionSpecified.equalsIgnoreCase("delete")) {
+            message = "delete a course";
+            aCourse = CourseDAO.getCourse(request.getParameter("courseID"));
+            CourseDAO.deleteCourse(aCourse.getCourseID());
+            mv.addObject("message", "Course Deleted");
+            mv = new ModelAndView("viewCourses");
         }
        return mv;
     }
