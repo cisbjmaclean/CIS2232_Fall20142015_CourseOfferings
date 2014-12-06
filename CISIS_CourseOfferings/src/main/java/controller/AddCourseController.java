@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import static sun.security.jgss.GSSUtil.login;
 
 /**
  * Controller for the Welcome
@@ -18,7 +17,7 @@ import static sun.security.jgss.GSSUtil.login;
  * @author bjmaclean
  */
 @Controller
-@RequestMapping("addCourse")
+@RequestMapping("courseAdd")
 
 public class AddCourseController {
 
