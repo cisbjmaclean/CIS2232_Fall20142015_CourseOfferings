@@ -137,8 +137,6 @@ public class CourseDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-
-                System.out.println("RS GET STRING ID = : " + rs.getString("course_id"));
                 Course newCourse = new Course();
                 newCourse.setCourseID(rs.getString("course_id"));
                 newCourse.setYear(rs.getString("academic_year"));               
@@ -182,8 +180,8 @@ public class CourseDAO {
                     + "SET course_id=?,academic_year=?,course_start_date=?,"
                     + "course_end_date=?,course_prerequisites=?,=?,course_capacity=?,"
                     + "course_co_requisites=?,instructor=?,location=?,room_number=?,course_days=?,"
-                    + "course_times=?,date_of_birth=?,gender_code=? "
-                    + "WHERE member_id = ?";
+                    + "course_times=?"
+                    + "WHERE course_id = ?";
 
             psCourse = conn.prepareStatement(sql);
             psCourse.setString(1, course.getCourseID());
