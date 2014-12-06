@@ -25,7 +25,7 @@
                 <tr>
                     <td><c:out value="${loopCounter.count}" /></td>
                     <td><c:out value="${course.courseID}" /></td>
-                    <td><c:out value="${course.year}" /></td>
+                    <td><c:out value="${course.yearCode}" /></td>
                     <td><c:out value="${course.courseStart}" /></td>
                     <td><c:out value="${course.courseEnd}" /></td>
                     <td><a href = "courseCalendar?action = edit&courseID=${course.courseID}">Edit Course</a></td>
