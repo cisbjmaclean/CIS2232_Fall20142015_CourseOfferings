@@ -2,8 +2,6 @@ package controller;
 
 import beans.Course;
 import database.CourseDAO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -49,17 +47,6 @@ public class CourseController {
             CourseDAO.deleteCourse(aCourse.getCourseID());
             mv.addObject("message", "Course Deleted");
             mv = new ModelAndView("viewCourses");
-        }
-       if (actionSpecified != null && actionSpecified.equalsIgnoreCase("update")) {
-            message = "edit a course";
-            aCourse = CourseDAO.getCourse(request.getParameter("courseID"));
-            try {
-                CourseDAO.updateCourse(aCourse);
-            } catch (Exception ex) {
-                Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            mv.addObject("message", "Course Deleted");
-            mv = new ModelAndView("addCourse");
         }
        return mv;
     }
