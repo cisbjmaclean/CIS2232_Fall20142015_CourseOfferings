@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Please enter course information</h1>
-        <form action=""  method="post">
+        <form action="addCourse"  method="post">
             <spring:nestedPath path="course">
                 <table>
                     <tr>
