@@ -104,7 +104,7 @@ public class CourseDAO {
         try {
             conn = ConnectionUtils.getConnection();
 
-            sql = "DELETE course WHERE course_id = ?";
+            sql = "DELETE FROM course WHERE course_id = ?";
 
             psMember = conn.prepareStatement(sql);
             psMember.setString(1, courseID);
@@ -119,7 +119,7 @@ public class CourseDAO {
     }
 
     public static ArrayList<Course> getAllCourses() {
-        System.out.println("Made it in to Get All Courses ");
+        System.out.println("Get All Courses ");
 
         PreparedStatement ps = null;
         String sql = null;
@@ -128,7 +128,6 @@ public class CourseDAO {
         ArrayList<Course> courses = new ArrayList();
 
         try {
-            System.out.println("Made it in to the try");
             conn = ConnectionUtils.getConnection();
 
             sql = "SELECT * FROM course";
@@ -138,7 +137,6 @@ public class CourseDAO {
 
             while (rs.next()) {
 
-                System.out.println("RS GET STRING ID = : " + rs.getString("course_id"));
                 Course newCourse = new Course();
                 newCourse.setCourseID(rs.getString("course_id"));
                 newCourse.setYear(rs.getString("academic_year"));               

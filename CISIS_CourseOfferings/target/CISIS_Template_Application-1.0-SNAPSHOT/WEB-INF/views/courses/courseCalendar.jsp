@@ -7,7 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <spring:nestedPath path="menu">
-    <form action="" method="post">
+    <form action="courseCalendar" method="post">
         <h2>Welcome to CISIS</h2>
         <table>
             <tr>
@@ -28,8 +28,8 @@
                     <td><c:out value="${course.year}" /></td>
                     <td><c:out value="${course.courseStart}" /></td>
                     <td><c:out value="${course.courseEnd}" /></td>
-                    <td><a href = "courseCalendar?action = edit&courseID=${course.courseID}">Edit Course</a></td>
-                    <td><a href = "courseCalendar?action = delete&courseID=${course.courseID}">Delete Course</a></td>
+                    <td><a href = "courseCalendar?action=edit&courseID=${course.courseID}">Edit Course</a></td>
+                    <td><a href = "courseCalendar?action=delete&courseID=${course.courseID}">Delete Course</a></td>
                 </tr>
             </c:forEach>
             <tr>

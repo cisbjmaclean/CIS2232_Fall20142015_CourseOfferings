@@ -2,6 +2,8 @@ package controller;
 
 import beans.Course;
 import database.CourseDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,38 +19,36 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("courseCalendar")
 public class CourseController {
-    
-    
-//    @RequestMapping(method = RequestMethod.GET)
-//    public String loadMember(ModelMap model) {
-//        
-//        model.addAttribute("memberBio", new Member());
-//        
-//        return "welcome";
-//    }
-    
+
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView onSubmit(@ModelAttribute("course")Course course, HttpServletRequest request) {
-        
+    public ModelAndView onSubmit(@ModelAttribute("course") Course course, HttpServletRequest request) {
+
         Course aCourse = new Course();
         String actionSpecified = request.getParameter("action");
         String message = "";
         ModelAndView mv = null;
-        
 
-       if (actionSpecified != null && actionSpecified.equalsIgnoreCase("add")) {
+        if (actionSpecified != null && actionSpecified.equalsIgnoreCase("add")) {
             message = "add a course";
             mv = new ModelAndView("addCourse");
             mv.addObject("course", new Course());
         }
-       if (actionSpecified != null && actionSpecified.equalsIgnoreCase("delete")) {
-            message = "delete a course";
-            aCourse = CourseDAO.getCourse(request.getParameter("courseID"));
-            CourseDAO.deleteCourse(aCourse.getCourseID());
-            mv.addObject("message", "Course Deleted");
+        if (actionSpecified != null && actionSpecified.equalsIgnoreCase("delete")) {
+            try {
+                CourseDAO.deleteCourse(request.getParameter("courseID"));
+                System.out.println("Deleted Course");
+            } catch (Exception ex) {
+                Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("There was an error deleting the course.");
+            }
+            message = "Course Deleted";
+
             mv = new ModelAndView("viewCourses");
+            mv.addObject("message", message);
+            mv.addObject("courses", CourseDAO.getAllCourses());
+
         }
-       return mv;
+        return mv;
     }
-    
+
 }

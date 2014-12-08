@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberAdminController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView onSubmit(HttpServletRequest request) {
+    public ModelAndView onSubmit(HttpServletRequest request, @ModelAttribute("Member") Member member) {
 
         //check the parameters.
         String actionSpecified = request.getParameter("action");
@@ -50,7 +51,7 @@ public class MemberAdminController {
             mv.addObject("Member", new Member());
         } else {
             //Get the memberBio
-            Member member = MemberBO.getMember(request.getParameter("memberId"));
+            MemberBO.getMember(request.getParameter("memberId"));
             mv = new ModelAndView("memberBio");
             mv.addObject("Member", aMember);
             if (request.getParameter("memberId").equals((String) request.getSession().getAttribute("loggedInUserId"))) {
