@@ -73,14 +73,7 @@ public class MenuController {
             }
             mv = new ModelAndView("viewMembers");
             mv.addObject("members",MemberBO.getAllActiveMembers());
-        /**
-         * Edit Users
-         */
-        } else if(menu.getAction().equalsIgnoreCase("Edit Users")) {
-            if (Util.debugOn) {
-                System.out.println("Edit a user");
-            }
-            mv = new ModelAndView("main");
+
         /**
          * Reports
          */

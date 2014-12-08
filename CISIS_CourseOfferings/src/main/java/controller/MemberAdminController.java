@@ -48,12 +48,12 @@ public class MemberAdminController {
             message = "add a member";
             mv = new ModelAndView("memberBio");
             mv.addObject("informationMessage", message);
-            mv.addObject("Member", new Member());
+            mv.addObject("member", new Member());
         } else {
             //Get the memberBio
             MemberBO.getMember(request.getParameter("memberId"));
             mv = new ModelAndView("memberBio");
-            mv.addObject("Member", aMember);
+            mv.addObject("member", aMember);
             if (request.getParameter("memberId").equals((String) request.getSession().getAttribute("loggedInUserId"))) {
                 request.getSession().setAttribute("loggedInMember", aMember);
             }

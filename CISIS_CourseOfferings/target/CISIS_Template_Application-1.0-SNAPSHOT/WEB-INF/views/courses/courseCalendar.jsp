@@ -18,16 +18,16 @@
                 <th></th>
                 <th>Course ID:</th>
                 <th>Year Code</th>
-                <th>Course Start Date</th>
-                <th>Course End Date</th>
+                <th>Instructor</th>
+                <th>Location</th>
             </tr>
                 <c:forEach var="course" items="${courses}" varStatus="loopCounter">
                 <tr>
                     <td><c:out value="${loopCounter.count}" /></td>
                     <td><c:out value="${course.courseID}" /></td>
                     <td><c:out value="${course.year}" /></td>
-                    <td><c:out value="${course.courseStart}" /></td>
-                    <td><c:out value="${course.courseEnd}" /></td>
+                    <td><c:out value="${course.instructor}" /></td>
+                    <td><c:out value="${course.location}" /></td>
                     <td><a href = "courseCalendar?action=delete&courseID=${course.courseID}">Delete Course</a></td>
                 </tr>
             </c:forEach>

@@ -63,6 +63,9 @@
                     <input type="submit" value=<fmt:message key="label.save"/>
                 </td>
             </tr>
+            <tr>
+                <td>${informationMessage}</td>
+            </tr>
         </table>
     </spring:nestedPath>
 </form>
