@@ -162,20 +162,6 @@ public class MemberDAO {
         }
     }
 
-    
-    public static String getAllActiveMembersEmails() {
-        String emails = "";
-        boolean first = true;
-        for (Member member : getAllActiveMembers()) {
-            if (!first) {
-                emails += "; ";
-            }
-            first = false;
-            emails += member.getEmailAddress();
-        }
-        return emails;
-    }
-
     public static ArrayList<Member> getAllActiveMembers() {
 
         PreparedStatement ps = null;

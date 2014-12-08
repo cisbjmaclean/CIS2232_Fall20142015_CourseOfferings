@@ -68,10 +68,6 @@ public class MemberBO {
             member.setNewUserId(username);
             
             MemberDAO.addMember(member);
-            String emailDetails = " You have been added to the Squash PEI Application.  \r\n User name="+member.getNewUserId()+"\r\n Password=rboard"
-                    + "\r\n \r\n Access details and change password at:  http://bjmac.hccis.info:8080/RegistrationBoard";
-            Mail mail = new Mail(member.getEmailAddress(), "squashpei@gmail.com", "Squash PEI new user", emailDetails);
-            mail.sendMail();
 
         } catch (Exception ex) {
             Logger.getLogger(MemberBO.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,13 +79,6 @@ public class MemberBO {
     public static ArrayList<Member> getAllActiveMembers(){
         
         return MemberDAO.getAllActiveMembers();
-        
-        
-    }
-
-    public static String getAllActiveMembersEmails(){
-        
-        return MemberDAO.getAllActiveMembersEmails();
         
         
     }

@@ -28,7 +28,6 @@
                     <td><c:out value="${course.year}" /></td>
                     <td><c:out value="${course.courseStart}" /></td>
                     <td><c:out value="${course.courseEnd}" /></td>
-                    <td><a href = "courseCalendar?action=edit&courseID=${course.courseID}">Edit Course</a></td>
                     <td><a href = "courseCalendar?action=delete&courseID=${course.courseID}">Delete Course</a></td>
                 </tr>
             </c:forEach>

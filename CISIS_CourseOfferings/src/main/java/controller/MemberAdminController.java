@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberAdminController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView onSubmit(HttpServletRequest request, @ModelAttribute("Member") Member member) {
+    public ModelAndView onSubmit(HttpServletRequest request, @ModelAttribute("member") Member member) {
 
         //check the parameters.
         String actionSpecified = request.getParameter("action");
