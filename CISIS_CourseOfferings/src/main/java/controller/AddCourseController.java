@@ -5,6 +5,7 @@ import database.CourseDAO;
 import forms.Login;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,30 +23,29 @@ import static sun.security.jgss.GSSUtil.login;
 
 public class AddCourseController {
 
-//    @RequestMapping(method = RequestMethod.GET)
-//    public String loadMember(ModelMap model) {
-//        
-//        model.addAttribute("memberBio", new Member());
-//        
-//        return "welcome";
-//    }
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("Course") Course course, Login login) {
+    public ModelAndView onSubmit(@ModelAttribute("course") Course course, Login login, HttpServletRequest request) {
+        String message = "";
 
-        if (course.getCourseID() != "") {
+        if (!"".equals(course.getCourseID())) {
             try {
                 CourseDAO.addCourse(course, login);
                 System.out.println("Course added.");
+                message = "Course was added";
+
             } catch (Exception ex) {
                 Logger.getLogger(AddCourseController.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Error Adding course");
+                message = "Course was  not added";
             }
+        } else {
+            message = "Course was not added";
         }
-
+        Course theCourse = new Course();
         ModelAndView mv;
         mv = new ModelAndView("addCourse");
-        mv.addObject("courses", course);
-        mv.addObject("message", "Course was added");
+        mv.addObject("message", message);        
+        mv.addObject("course", theCourse);
         return mv;
     }
 }
