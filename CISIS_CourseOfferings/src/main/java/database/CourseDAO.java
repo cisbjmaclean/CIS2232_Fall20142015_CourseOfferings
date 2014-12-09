@@ -1,7 +1,7 @@
 package database;
 
 import beans.Course;
-import forms.Login;
+import beans.Member;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +15,7 @@ import util.DbUtils;
  */
 public class CourseDAO {
 
-    public static void addCourse(Course course, Login login) throws Exception {
+    public static void addCourse(Course course, Member member) throws Exception {
         
         
         System.out.println("inserting a new course");
@@ -44,7 +44,7 @@ public class CourseDAO {
             ps.setString(10, course.getRoomNo());
             ps.setString(11, course.getDays());
             ps.setString(12, course.getTimes());
-            ps.setString(13, login.getUsername());
+            ps.setString(13, member.getUserId());
             ps.executeUpdate();
         } catch (Exception e) {
             String errorMessage = e.getMessage();

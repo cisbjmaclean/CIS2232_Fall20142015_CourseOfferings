@@ -1,6 +1,7 @@
 package controller;
 
 import beans.Course;
+import beans.Member;
 import database.CourseDAO;
 import forms.Login;
 import java.util.logging.Level;
@@ -24,12 +25,12 @@ import static sun.security.jgss.GSSUtil.login;
 public class AddCourseController {
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("course") Course course, Login login, HttpServletRequest request) {
+    public ModelAndView onSubmit(@ModelAttribute("course") Course course, Member member, HttpServletRequest request) {
         String message = "";
 
         if (!"".equals(course.getCourseID())) {
             try {
-                CourseDAO.addCourse(course, login);
+                CourseDAO.addCourse(course, member);
                 System.out.println("Course added.");
                 message = "Course was added";
 

@@ -7,7 +7,6 @@ import exceptions.PasswordException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import util.Mail;
 
 /**
  * This class will handle the processing associated with a business object.  
