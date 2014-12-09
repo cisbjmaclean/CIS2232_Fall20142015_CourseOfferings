@@ -30,7 +30,7 @@
                         <td><c:out value="${course.getCoursePrereqs()}"/></td>
                         <td><c:out value="${course.getCourseCoreqs()}"/></td>
                         <td><c:out value="${course.getCourseCapacity()}"/></td>
-                        <td><c:out value="${course.getMemberId()}"/></td>
+                        <td><c:out value="${course.getInstructor()}"/></td>
                         <td><c:out value="${course.getLocationCode()}"/></td>
                         <td><c:out value="${course.getRoomNumber()}"/></td>
                         <td><c:out value="${course.getCourseDays()}"/></td>

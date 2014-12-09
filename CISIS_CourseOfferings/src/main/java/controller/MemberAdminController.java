@@ -51,8 +51,10 @@ public class MemberAdminController {
             mv.addObject("member", new Member());
         } else {
             //Get the memberBio
-            MemberBO.getMember(request.getParameter("memberId"));
+            message = "edit member";
+            aMember = MemberBO.getMember(request.getParameter("memberId"));
             mv = new ModelAndView("memberBio");
+            mv.addObject("message", message);
             mv.addObject("member", aMember);
             if (request.getParameter("memberId").equals((String) request.getSession().getAttribute("loggedInUserId"))) {
                 request.getSession().setAttribute("loggedInMember", aMember);

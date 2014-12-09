@@ -17,7 +17,7 @@ public class Report {
     private String course_prereqs;
     private String course_co_reqs;
     private int course_capacity;
-    private int member_id;
+    private String instructor;
     private int location_code;
     private int room_number;
     private String course_days;
@@ -28,17 +28,17 @@ public class Report {
     private int academic_year_code;
     
     public Report() {
-        
+        // do nothing
     }
 
-    public Report(String course_id, String course_start_date, String course_end_date, String course_prereqs, String course_co_reqs, int course_capacity, int member_id, int location_code, int room_number, String course_days, String course_times, String created_date_time, String created_user_id, String updated_user_id, int academic_year_code) {
+    public Report(String course_id, String course_start_date, String course_end_date, String course_prereqs, String course_co_reqs, int course_capacity, String instructor, int location_code, int room_number, String course_days, String course_times, String created_date_time, String created_user_id, String updated_user_id, int academic_year_code) {
         this.course_id = course_id;
         this.course_start_date = course_start_date;
         this.course_end_date = course_end_date;
         this.course_prereqs = course_prereqs;
         this.course_co_reqs = course_co_reqs;
         this.course_capacity = course_capacity;
-        this.member_id = member_id;
+        this.instructor = instructor;
         this.location_code = location_code;
         this.room_number = room_number;
         this.course_days = course_days;
@@ -136,15 +136,15 @@ public class Report {
     /**
      * @return the member_id
      */
-    public int getMemberId() {
-        return member_id;
+    public String getInstructor() {
+        return instructor;
     }
 
     /**
      * @param member_id the member_id to set
      */
-    public void setMemberId(int member_id) {
-        this.member_id = member_id;
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
     }
 
     /**
