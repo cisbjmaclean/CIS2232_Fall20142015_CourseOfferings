@@ -30,7 +30,8 @@ public class ReportController {
             System.out.println("Report Exported academic year sequence code: " + menu.getAction());
         }
         
-        // TODO: check if academicYear is displaying properly and to test out if courseList is being returned correctly
+        // grab sequence code for academic year and grab a list of courses
+        // that are listed for that selected year
         int sequenceCode = Integer.parseInt(menu.getAction());
         ArrayList<Report> courseList = ReportBO.getAcademicYearReport(sequenceCode);
         String academicYear = ReportBO.getAcademicYear(sequenceCode);

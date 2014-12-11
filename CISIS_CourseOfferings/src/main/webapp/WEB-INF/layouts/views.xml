@@ -59,8 +59,13 @@
         <definition name="viewReport" extends="DefaultTemplate">
             <put-attribute name="body" value="/WEB-INF/views/reports/viewReport.jsp" />
         </definition>
+        
         <definition name="addCourse" extends="DefaultTemplate">
             <put-attribute name="body" value="/WEB-INF/views/courses/addCourse.jsp" />
+        </definition>
+        
+        <definition name="editCourse" extends="DefaultTemplate">
+            <put-attribute name="body" value="/WEB-INF/views/courses/editCourse.jsp" />
         </definition>
 
 </tiles-definitions>

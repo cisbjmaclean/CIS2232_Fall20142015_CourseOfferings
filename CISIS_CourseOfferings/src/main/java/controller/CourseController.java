@@ -28,13 +28,17 @@ public class CourseController {
         String message = "";
         ModelAndView mv = null;
 
+        // check what the "action" parameter equals
         if (actionSpecified != null && actionSpecified.equalsIgnoreCase("add")) {
+            // bring user to the add course page
             message = "add a course";
             mv = new ModelAndView("addCourse");
             mv.addObject("course", new Course());
         }
-        if (actionSpecified != null && actionSpecified.equalsIgnoreCase("delete")) {
+        else if (actionSpecified != null && actionSpecified.equalsIgnoreCase("delete")) {
+            // try to delete the selected course
             try {
+                // delete record based on the courseID that was provided
                 CourseDAO.deleteCourse(request.getParameter("courseID"));
                 System.out.println("Deleted Course");
             } catch (Exception ex) {
@@ -43,10 +47,18 @@ public class CourseController {
             }
             message = "Course Deleted";
 
+            // display list of courses and provide message that delete was successful
             mv = new ModelAndView("viewCourses");
             mv.addObject("message", message);
             mv.addObject("courses", CourseDAO.getAllCourses());
-
+        } else {
+            // bring user to edit form. and get all values for the selected course
+            // and populate all fields on page
+            message = "Edit Course";
+            aCourse = CourseDAO.getCourse(request.getParameter("courseID"));
+            mv = new ModelAndView("editCourse");
+            mv.addObject("message", message);
+            mv.addObject("course", aCourse);
         }
         return mv;
     }

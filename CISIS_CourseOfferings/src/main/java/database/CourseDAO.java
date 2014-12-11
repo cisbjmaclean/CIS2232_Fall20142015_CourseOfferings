@@ -55,6 +55,7 @@ public class CourseDAO {
         }
         return;
     }
+    
     public static Course getCourse(String courseID) {
         PreparedStatement ps = null;
         String sql = null;
@@ -62,24 +63,23 @@ public class CourseDAO {
         Course aCourse = new Course();
         aCourse.setCourseID(courseID);
         try {
-           
-          sql = "SELECT * FROM coures WHERE course_id = " + courseID;
+            conn = ConnectionUtils.getConnection();
+            sql = "SELECT * FROM course WHERE course_id = " + courseID;
             ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 aCourse.setCourseID(courseID);
-                aCourse.setYear(rs.getString("year"));
+                aCourse.setYear(rs.getString("academic_year"));
                 aCourse.setCourseStart(rs.getString("course_start_date"));
                 aCourse.setCourseEnd(rs.getString("course_end_date"));
-                aCourse.setPreReqs(rs.getString("prerequisites"));
+                aCourse.setPreReqs(rs.getString("course_prerequisites"));
                 aCourse.setCourseCap(rs.getInt("course_capacity"));
                 aCourse.setCoReqs(rs.getString("course_co_requisites"));
                 aCourse.setInstructor(rs.getString("instructor"));
                 aCourse.setLocation(rs.getString("location"));
                 aCourse.setRoomNo(rs.getString("room_number"));
                 aCourse.setDays(rs.getString("course_days"));
-                aCourse.setTimes(rs.getString("course_times"));                
-
+                aCourse.setTimes(rs.getString("course_times"));
             }
         } catch (Exception e) {
             String errorMessage = e.getMessage();
@@ -177,25 +177,26 @@ public class CourseDAO {
             conn = ConnectionUtils.getConnection();
 
             sql = "UPDATE course "
-                    + "SET course_id=?,academic_year=?,course_start_date=?,"
-                    + "course_end_date=?,course_prerequisites=?,=?,course_capacity=?,"
+                    + "SET academic_year=?,course_start_date=?,"
+                    + "course_end_date=?,course_prerequisites=?,course_capacity=?,"
                     + "course_co_requisites=?,instructor=?,location=?,room_number=?,course_days=?,"
-                    + "course_times=?,date_of_birth=?,gender_code=? "
-                    + "WHERE member_id = ?";
+                    + "course_times=?,updated_date_time=sysdate() "
+                    + "WHERE course_id=?";
 
             psCourse = conn.prepareStatement(sql);
-            psCourse.setString(1, course.getCourseID());
-            psCourse.setString(2, course.getYear());
-            psCourse.setString(3, course.getCourseStart());
-            psCourse.setString(4, course.getCourseEnd());
-            psCourse.setString(5, course.getPreReqs());
-            psCourse.setInt(6, course.getCourseCap());
-            psCourse.setString(7, course.getCoReqs());
-            psCourse.setString(8, course.getInstructor());
-            psCourse.setString(9, course.getLocation());
-            psCourse.setString(10, course.getRoomNo());
-            psCourse.setString(11, course.getDays());
-            psCourse.setString(12, course.getTimes());
+            //psCourse.setString(1, course.getCourseID());
+            psCourse.setString(1, course.getYear());
+            psCourse.setString(2, course.getCourseStart());
+            psCourse.setString(3, course.getCourseEnd());
+            psCourse.setString(4, course.getPreReqs());
+            psCourse.setInt(5, course.getCourseCap());
+            psCourse.setString(6, course.getCoReqs());
+            psCourse.setString(7, course.getInstructor());
+            psCourse.setString(8, course.getLocation());
+            psCourse.setString(9, course.getRoomNo());
+            psCourse.setString(10, course.getDays());
+            psCourse.setString(11, course.getTimes());
+            psCourse.setString(12, course.getCourseID());
 
             psCourse.executeUpdate();
 

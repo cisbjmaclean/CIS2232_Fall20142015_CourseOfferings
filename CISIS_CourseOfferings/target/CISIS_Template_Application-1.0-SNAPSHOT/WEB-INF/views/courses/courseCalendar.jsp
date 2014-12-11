@@ -15,7 +15,6 @@
                 </td>
             </tr>
             <tr>
-                <th></th>
                 <th>Course ID:</th>
                 <th>Year Code</th>
                 <th>Instructor</th>
@@ -23,11 +22,11 @@
             </tr>
                 <c:forEach var="course" items="${courses}" varStatus="loopCounter">
                 <tr>
-                    <td><c:out value="${loopCounter.count}" /></td>
                     <td><c:out value="${course.courseID}" /></td>
                     <td><c:out value="${course.year}" /></td>
                     <td><c:out value="${course.instructor}" /></td>
                     <td><c:out value="${course.location}" /></td>
+                    <td><a href = "courseCalendar?action=edit&courseID=${course.courseID}">Edit Course</a></td>
                     <td><a href = "courseCalendar?action=delete&courseID=${course.courseID}">Delete Course</a></td>
                 </tr>
             </c:forEach>
