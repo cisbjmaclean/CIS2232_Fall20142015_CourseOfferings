@@ -37,9 +37,11 @@ public class ReportController {
         String academicYear = ReportBO.getAcademicYear(sequenceCode);
         System.out.println(courseList.size() + " courses found");
         mv = new ModelAndView("viewReport");
+        mv.addObject("message", "Export Report");
         mv.addObject("academicYear", academicYear);
         mv.addObject("numCourses", courseList.size());
         mv.addObject("courseList", courseList);
+        mv.addObject("menu", new Menu());
         return mv;
     }
 }

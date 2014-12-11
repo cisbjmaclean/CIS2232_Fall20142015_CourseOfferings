@@ -1,0 +1,9 @@
+#surefire
+#Thu Dec 11 13:23:34 AST 2014
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.0.1\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=H\:\\Documents\\Courses\\CIS2232_Advanced_OOP\\Github\\CIS2232_Fall20142015_CourseOfferings\\CISIS_CourseOfferings
+file.encoding=UTF-8
+localRepository=C\:\\Users\\dmaclean31977\\.m2\\repository
+netbeans.deploy=true
+netbeans.deploy.clientUrlPart=/welcome
+basedir=H\:\\Documents\\Courses\\CIS2232_Advanced_OOP\\Github\\CIS2232_Fall20142015_CourseOfferings\\CISIS_CourseOfferings

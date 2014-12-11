@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import java.util.ArrayList;
+import beans.Report;
+import database.ReportDAO;
 
 /**
  * Controller for the Welcome
@@ -82,9 +85,11 @@ public class MenuController {
                 System.out.println("Display Report Options");
             }
             Menu reportMenu = new Menu();
+            ArrayList<Report> courseList = ReportDAO.getReport(1);
             mv = new ModelAndView("report");
             mv.addObject("message", "Export Report");
             mv.addObject("menu", reportMenu);
+            mv.addObject("courseList", courseList);
         /**
          * Add Notification
          */
