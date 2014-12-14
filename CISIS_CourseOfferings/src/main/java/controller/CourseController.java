@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Controller for the Welcome
+ * Controller the view courses view.
  *
- * @author bjmaclean
+ * @author knjackson 
  */
 @Controller
 @RequestMapping("courseCalendar")

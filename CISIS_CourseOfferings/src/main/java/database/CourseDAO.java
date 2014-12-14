@@ -11,10 +11,11 @@ import util.DbUtils;
 
 /**
  *
- * @author BJ
+ * @author knjackson
  */
 public class CourseDAO {
 
+    //method for adding courses to the database.
     public static void addCourse(Course course, Member member) throws Exception {
         
         
@@ -25,13 +26,14 @@ public class CourseDAO {
         Connection conn = null;
         conn = ConnectionUtils.getConnection();
         try {
-           
+           //sql for inserting new course
             sql = "INSERT INTO course "
                     + "  (`course_id`, `academic_year`,`course_start_date`, `course_end_date`, "
                     + "   `course_prerequisites`, `course_capacity`, `course_co_requisites`, `instructor`,`location`, `room_number`, `course_days`,`course_times`,`created_date_time`,`created_user_id`,`updated_date_time`) "
                     + "  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate(),?, sysdate())";
 
             ps = conn.prepareStatement(sql);
+            //setting prepared statment values
             ps.setString(1, course.getCourseID());
             ps.setString(2, course.getYear());
             ps.setString(3, course.getCourseStart());
@@ -56,6 +58,7 @@ public class CourseDAO {
         return;
     }
     
+    //Method for retreiving course information using courseID
     public static Course getCourse(String courseID) {
         PreparedStatement ps = null;
         String sql = null;
@@ -92,6 +95,8 @@ public class CourseDAO {
 
 
     public static void deleteCourse(String courseID) {
+        //method for deleting a course from the database.
+ 
 
         System.out.println("deleting course");
         PreparedStatement psMember = null;
@@ -119,6 +124,7 @@ public class CourseDAO {
     }
 
     public static ArrayList<Course> getAllCourses() {
+        //method for getting all existing courses and returning them in an arraylist. 
         System.out.println("Get All Courses ");
 
         PreparedStatement ps = null;
@@ -138,6 +144,7 @@ public class CourseDAO {
             while (rs.next()) {
 
                 Course newCourse = new Course();
+                //set course values to the db values while there until there are no more results
                 newCourse.setCourseID(rs.getString("course_id"));
                 newCourse.setYear(rs.getString("academic_year"));               
                 newCourse.setCourseStart(rs.getString("course_start_date"));
@@ -149,7 +156,8 @@ public class CourseDAO {
                 newCourse.setLocation(rs.getString("location"));
                 newCourse.setRoomNo(rs.getString("room_number"));
                 newCourse.setDays(rs.getString("course_days"));
-                newCourse.setTimes(rs.getString("course_times"));                
+                newCourse.setTimes(rs.getString("course_times"));     
+                //add created course item to the arraylist
                 courses.add(newCourse);
 
             }

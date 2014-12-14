@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beans;
 
 import java.nio.file.Path;
@@ -10,9 +5,11 @@ import java.nio.file.Paths;
 
 /**
  *
- * @author Chase
+ * @author Kylea
+ * Course bean containing getters and setters for course variables
  */
 public class Course {
+    //set the variables
     private String courseID = "";  
     private String year = "";
     private String courseStart= "";
@@ -26,6 +23,7 @@ public class Course {
     private String days= "";
     private String times= "";
 
+    //getters and setters
     public String getInstructor() {
         return instructor;
     }
